@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Order UI testing</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="/assets/order/notOrder.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+	<script type="module" src="/fetch.xhr.js"></script>
+</head>
+<body>
+	<script src="/assets/order/notOrder.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			notOrder.launchOrderForm({url: '/api/order/failure'})
+				.then((data)=>{
+					console.log('all goood', data);
+				})
+				.catch((e)=>{
+					console.log('rejected');
+				});
+		});
+	</script>
+</body>
+
+</html>

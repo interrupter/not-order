@@ -1,0 +1,57 @@
+@import "@material/typography/mdc-typography";
+
+.order-form-paper{
+	width: 80vw;
+	margin: 10vh auto auto auto;
+}
+
+@media (max-width: 700px) {
+	.order-form-paper{
+		width: 100vw;
+		height: 100vh;
+		margin: 0vh auto auto auto;
+	}
+}
+
+.order-form-email > label,
+.order-form-tel > label {
+	width: 80%;
+}
+
+.order-form-name > label {
+	width: 100%;
+}
+
+.pull-right {
+	display: block;
+	float: right;
+}
+
+.shopping-cart{
+	background-color: #fcfcfc;
+}
+
+.order-form {
+	margin: 3%;
+	margin-top: 3em;
+}
+
+.buttons-row {
+	margin-top: 1.5em;
+}
+
+.order-form .mdc-typography--headline5 {
+	margin-bottom: 1.5em;
+}
+
+.order-form-tel,
+.order-form-email {
+	display: inline-block;
+	width: 30%;
+}
+
+.order-form-name {
+	display: inline-block;
+	width: 37%;
+	float: right;
+}

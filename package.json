@@ -1,10 +1,106 @@
 {
-  "name": "not-order",
-  "version": "0.0.1",
-  "description": "not-* family order plugin",
-  "main": "src/index.js",
-  "repository": "git@github.com:interrupter/not-order.git",
-  "author": "Aleksander Repin <alex.repin@mail.ru>",
-  "license": "MIT",
-  "private": true
+    "name": "not-order",
+    "version": "0.0.1",
+    "description": "not-* family order plugin",
+    "main": "index.js",
+    "repository": "git@github.com:interrupter/not-order.git",
+    "author": "Aleksander Repin <alex.repin@mail.ru>",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "build": "./bin/build.sh",
+        "buildtest": "ENV=test ./bin/build.sh && rm -rf ./test/browser/assets/order/* && mv dist/* ./test/browser/assets/order/",
+        "prelint": "npm run build",
+        "lint": "./node_modules/.bin/eslint ./src/**/**/*.js",
+        "cypress:run": "NODE_ENV=test TEST_TYPE=run node ./test/cypress.env.js",
+        "cypress:open": "NODE_ENV=test TEST_TYPE=open node ./test/cypress.env.js",
+        "test:open": "_ENV_NODE_='liquid' ./node_modules/.bin/mocha --reporter spec ./test/node && npm run cypress:open",
+        "test:run": "_ENV_NODE_='liquid' ./node_modules/.bin/mocha --reporter spec ./test/node && npm run cypress:run",
+        "test": "npm run test:run",
+        "docs": "./node_modules/.bin/jsdoc -c jsdoc.json",
+        "cover": "_ENV_NODE_='liquid' nyc npm run test"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.9.0",
+        "@babel/plugin-transform-arrow-functions": "^7.8.3",
+        "@babel/plugin-transform-runtime": "^7.9.0",
+        "@babel/preset-env": "^7.9.5",
+        "@cypress/code-coverage": "^3.5.3",
+        "@material/theme": "^3.1.0",
+        "@material/typography": "^3.1.0",
+        "@smui/button": "^1.0.0-beta.20",
+        "@smui/icon-button": "^1.0.0-beta.21",
+        "@smui/paper": "^1.0.0-beta.21",
+        "@smui/textfield": "^1.0.0-beta.21",
+        "babel-plugin-istanbul": "^6.0.0",
+        "babel-preset-env": "^1.7.0",
+        "chai": "^4.2.0",
+        "chai-as-promised": "^7.1.1",
+        "connect": "^3.7.0",
+        "cypress": "^4.4.1",
+        "eslint": "^6.8.0",
+        "ink-docstrap": "^1.3.2",
+        "istanbul-lib-coverage": "^3.0.0",
+        "jsdoc": "^3.6.4",
+        "mocha": "^7.1.1",
+        "mongodb-memory-server": "^6.5.2",
+        "ncp": "^2.0.0",
+        "node-sass": "^4.14.0",
+        "not-overlay": "0.0.4",
+        "nyc": "^15.0.1",
+        "request": "^2.88.2",
+        "rollup": "^2.7.2",
+        "rollup-plugin-babel": "^4.4.0",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "rollup-plugin-eslint": "^7.0.0",
+        "rollup-plugin-filesize": "^7.0.0",
+        "rollup-plugin-istanbul": "^2.0.1",
+        "rollup-plugin-node-resolve": "^5.2.0",
+        "rollup-plugin-postcss": "^3.1.1",
+        "rollup-plugin-sass": "^1.2.2",
+        "rollup-plugin-svelte": "^5.2.1",
+        "sass": "^1.26.5",
+        "serve-static": "^1.14.1",
+        "should": "^13.2.3",
+        "svelte": "^3.21.0",
+        "terser": "^4.6.12",
+        "whatwg-fetch": "^3.0.0"
+    },
+    "nyc": {
+        "include": [
+            "index.js",
+            "src/**/**/**.js"
+        ],
+        "exclude": [
+            "test/**/**/**/**.js",
+            "node_modules/"
+        ],
+        "reporter": [
+            "html"
+        ],
+        "check-coverage": false,
+        "per-file": false,
+        "lines": 95,
+        "statements": 95,
+        "functions": 95,
+        "branches": 95,
+        "watermarks": {
+            "lines": [
+                80,
+                95
+            ],
+            "functions": [
+                80,
+                95
+            ],
+            "branches": [
+                80,
+                95
+            ],
+            "statements": [
+                80,
+                95
+            ]
+        }
+    }
 }

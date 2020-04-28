@@ -1,0 +1,10 @@
+{
+  "status": "error",
+  "message": "Ошибка на сервере. Грузити апельсины бочками!",
+  "errors":{
+    "tel": ["wrong format"],
+    "email": ["wrong format", "Format 1-234-567-1234"],
+    "name": ["empty"],
+    "comment": ["too long"]
+  }
+}
