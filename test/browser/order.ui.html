@@ -13,16 +13,23 @@
 	<script type="module" src="/fetch.xhr.js"></script>
 </head>
 <body>
+	<button id="test-good" data-url="/api/order/good">Good data return</button>
+	<button id="test-bad" data-url="/api/order/failure">Bad data return</button>
 	<script src="/assets/order/notOrder.js"></script>
 	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			notOrder.launchOrderForm({url: '/api/order/failure'})
+		function startTest(e){
+			notOrder.launchOrderForm({url: e.currentTarget.dataset.url})
 				.then((data)=>{
 					console.log('all goood', data);
 				})
 				.catch((e)=>{
 					console.log('rejected');
 				});
+		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			document.body.querySelector('#test-good').addEventListener('click', startTest);
+			document.body.querySelector('#test-bad').addEventListener('click', startTest);			
 		});
 	</script>
 </body>

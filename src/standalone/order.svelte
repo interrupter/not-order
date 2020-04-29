@@ -39,6 +39,11 @@
 	export let titleSuccess = 'Оформление заказа успешно завершено!';
 	export let titleFailure = 'Во время оформления заказа произошла ошибка!';
 
+	export let redirectSuccess = false;
+	export let redirectFailure = false;
+
+	export let order = {};
+
 	export let tel = {
 		label: 'Ваш номер телефона',
 		placeholder: '',
@@ -85,10 +90,13 @@
 
 	function collectData(){
 		return {
-			tel: tel.enabled?tel.value:'',
-			name: name.enabled?name.value:'',
-			email: email.enabled?email.value:'',
-			comment: comment.enabled?comment.value:''
+			client:{
+				tel: tel.enabled?tel.value:'',
+				name: name.enabled?name.value:'',
+				email: email.enabled?email.value:'',
+				comment: comment.enabled?comment.value:'',
+			},
+			order
 		};
 	}
 
@@ -114,9 +122,9 @@
 		return await response.json();
 	}
 
-	export let resolveOrder = () => {
+	export let resolveOrder = (data) => {
 			overlay.$destroy();
-			dispatch('resolve', collectData);
+			dispatch('resolve', data);
 		};
 
 	export let rejectOrder = () => {
@@ -124,26 +132,49 @@
 			dispatch('reject', {});
 		};
 
+	function onSuccess(res){
+		stage = 'success';
+		setTimeout(()=>{
+			if(redirectSuccess){
+				document.location.href = redirectSuccess;
+			}else{
+				resolveOrder(res);
+			}
+		}, resultShowtime);
+	}
+
+	function onValidationErrors(res){
+		stage = 'failure';
+		errorMessage = res.message;
+		validationErrors = res.errors;
+		setTimeout(()=>{
+			stage = 'filling';
+		}, resultShowtime);
+	}
+
+	function onException(e){
+		stage = 'failure';
+		errorMessage = e.message;
+		setTimeout(()=>{
+			if(redirectFailure){
+				document.location.href = redirectSuccess;
+			}else{
+				rejectOrder(e);
+			}
+		}, resultShowtime);
+	}
+
 	export let putOrder = ()=>{
 		stage = 'loading';
 		putData(url, collectData())
 			.then((res)=>{
 				if(res.status === 'ok'){
-					stage = 'success';
-					setTimeout(()=>{ stage = 'filling'; }, resultShowtime);
+					onSuccess(res);
 				}else{
-					stage = 'failure';
-					errorMessage = res.message;
-					validationErrors = res.errors;
-					setTimeout(()=>{
-						stage = 'filling';
-					}, resultShowtime);
+					onValidationErrors(res);
 				}
 			})
-			.catch((e)=>{
-				stage = 'failure';
-				errorMessage = e.message;
-			});
+			.catch(onException);
 	};
 	$: telHelper = validationErrors.tel?validationErrors.tel.join(', '):tel.placeholder;
 	$: nameHelper = validationErrors.name?validationErrors.name.join(', '):name.placeholder;

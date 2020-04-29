@@ -8970,7 +8970,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (157:3) <Subtitle>
+    // (188:3) <Subtitle>
     function create_default_slot_13(ctx) {
     	let t;
 
@@ -8990,7 +8990,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (159:3) {#if stage === 'filling'}
+    // (190:3) {#if stage === 'filling'}
     function create_if_block_3$1(ctx) {
     	let div1;
     	let t0;
@@ -9164,14 +9164,14 @@ var notOrder = (function (exports) {
 
     			const button0_changes = {};
 
-    			if (dirty[0] & /*cancel*/ 2048 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*cancel*/ 2048 | dirty[1] & /*$$scope*/ 256) {
     				button0_changes.$$scope = { dirty, ctx };
     			}
 
     			button0.$set(button0_changes);
     			const button1_changes = {};
 
-    			if (dirty[0] & /*submit*/ 1024 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*submit*/ 1024 | dirty[1] & /*$$scope*/ 256) {
     				button1_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9208,7 +9208,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (161:4) {#if tel.enabled}
+    // (192:4) {#if tel.enabled}
     function create_if_block_7(ctx) {
     	let div;
     	let updating_value;
@@ -9216,7 +9216,7 @@ var notOrder = (function (exports) {
     	let current;
 
     	function textfield_value_binding(value) {
-    		/*textfield_value_binding*/ ctx[28].call(null, value);
+    		/*textfield_value_binding*/ ctx[34].call(null, value);
     	}
 
     	let textfield_props = {
@@ -9277,7 +9277,7 @@ var notOrder = (function (exports) {
     			textfield.$set(textfield_changes);
     			const helpertext_changes = {};
 
-    			if (dirty[0] & /*telHelper*/ 262144 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*telHelper*/ 262144 | dirty[1] & /*$$scope*/ 256) {
     				helpertext_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9302,7 +9302,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (167:5) <HelperText id="input-field-helper-tel">
+    // (198:5) <HelperText id="input-field-helper-tel">
     function create_default_slot_12(ctx) {
     	let t;
 
@@ -9322,7 +9322,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (170:4) {#if email.enabled}
+    // (201:4) {#if email.enabled}
     function create_if_block_6$1(ctx) {
     	let div;
     	let updating_value;
@@ -9330,7 +9330,7 @@ var notOrder = (function (exports) {
     	let current;
 
     	function textfield_value_binding_1(value) {
-    		/*textfield_value_binding_1*/ ctx[29].call(null, value);
+    		/*textfield_value_binding_1*/ ctx[35].call(null, value);
     	}
 
     	let textfield_props = {
@@ -9383,7 +9383,7 @@ var notOrder = (function (exports) {
     			if (dirty[0] & /*email*/ 2) textfield_changes.required = /*email*/ ctx[1].required;
     			if (dirty[0] & /*email*/ 2) textfield_changes.placeholder = /*email*/ ctx[1].placeholder;
 
-    			if (dirty[0] & /*email*/ 2 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*email*/ 2 | dirty[1] & /*$$scope*/ 256) {
     				textfield_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9396,7 +9396,7 @@ var notOrder = (function (exports) {
     			textfield.$set(textfield_changes);
     			const helpertext_changes = {};
 
-    			if (dirty[0] & /*emailHelper*/ 1048576 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*emailHelper*/ 1048576 | dirty[1] & /*$$scope*/ 256) {
     				helpertext_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9421,7 +9421,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (177:7) <CommonIcon class="material-icons" style="font-size: 1em; line-height: normal; vertical-align: middle;">
+    // (208:7) <CommonIcon class="material-icons" style="font-size: 1em; line-height: normal; vertical-align: middle;">
     function create_default_slot_11(ctx) {
     	let t;
 
@@ -9438,7 +9438,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (176:6) <span slot="label">
+    // (207:6) <span slot="label">
     function create_label_slot(ctx) {
     	let span;
     	let t0;
@@ -9473,7 +9473,7 @@ var notOrder = (function (exports) {
     		p(ctx, dirty) {
     			const commonicon_changes = {};
 
-    			if (dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[1] & /*$$scope*/ 256) {
     				commonicon_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9496,7 +9496,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (180:5) <HelperText id="input-field-helper-email">
+    // (211:5) <HelperText id="input-field-helper-email">
     function create_default_slot_9(ctx) {
     	let t;
 
@@ -9516,7 +9516,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (183:4) {#if name.enabled}
+    // (214:4) {#if name.enabled}
     function create_if_block_5$1(ctx) {
     	let div;
     	let updating_value;
@@ -9524,7 +9524,7 @@ var notOrder = (function (exports) {
     	let current;
 
     	function textfield_value_binding_2(value) {
-    		/*textfield_value_binding_2*/ ctx[30].call(null, value);
+    		/*textfield_value_binding_2*/ ctx[36].call(null, value);
     	}
 
     	let textfield_props = {
@@ -9585,7 +9585,7 @@ var notOrder = (function (exports) {
     			textfield.$set(textfield_changes);
     			const helpertext_changes = {};
 
-    			if (dirty[0] & /*nameHelper*/ 524288 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*nameHelper*/ 524288 | dirty[1] & /*$$scope*/ 256) {
     				helpertext_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9610,7 +9610,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (188:5) <HelperText id="input-field-helper-name">
+    // (219:5) <HelperText id="input-field-helper-name">
     function create_default_slot_8(ctx) {
     	let t;
 
@@ -9630,7 +9630,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (191:4) {#if comment.enabled}
+    // (222:4) {#if comment.enabled}
     function create_if_block_4$1(ctx) {
     	let div;
     	let updating_value;
@@ -9638,7 +9638,7 @@ var notOrder = (function (exports) {
     	let current;
 
     	function textfield_value_binding_3(value) {
-    		/*textfield_value_binding_3*/ ctx[31].call(null, value);
+    		/*textfield_value_binding_3*/ ctx[37].call(null, value);
     	}
 
     	let textfield_props = {
@@ -9694,7 +9694,7 @@ var notOrder = (function (exports) {
     			textfield.$set(textfield_changes);
     			const helpertext_changes = {};
 
-    			if (dirty[0] & /*commentHelper*/ 2097152 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*commentHelper*/ 2097152 | dirty[1] & /*$$scope*/ 256) {
     				helpertext_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9719,7 +9719,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (194:5) <HelperText id="input-field-helper-comment">
+    // (225:5) <HelperText id="input-field-helper-comment">
     function create_default_slot_7(ctx) {
     	let t;
 
@@ -9739,7 +9739,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (199:6) <Label>
+    // (230:6) <Label>
     function create_default_slot_6(ctx) {
     	let t_value = /*cancel*/ ctx[11].caption + "";
     	let t;
@@ -9760,7 +9760,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (198:5) <Button on:click={rejectOrder} variant="outlined" color="secondary" class="order-form-cancel">
+    // (229:5) <Button on:click={rejectOrder} variant="outlined" color="secondary" class="order-form-cancel">
     function create_default_slot_5(ctx) {
     	let current;
 
@@ -9782,7 +9782,7 @@ var notOrder = (function (exports) {
     		p(ctx, dirty) {
     			const label_changes = {};
 
-    			if (dirty[0] & /*cancel*/ 2048 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*cancel*/ 2048 | dirty[1] & /*$$scope*/ 256) {
     				label_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9803,7 +9803,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (202:6) <Label>
+    // (233:6) <Label>
     function create_default_slot_4(ctx) {
     	let t_value = /*submit*/ ctx[10].caption + "";
     	let t;
@@ -9824,7 +9824,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (201:5) <Button on:click={putOrder} variant="raised" color="primary" class="order-form-submit pull-right">
+    // (232:5) <Button on:click={putOrder} variant="raised" color="primary" class="order-form-submit pull-right">
     function create_default_slot_3(ctx) {
     	let current;
 
@@ -9846,7 +9846,7 @@ var notOrder = (function (exports) {
     		p(ctx, dirty) {
     			const label_changes = {};
 
-    			if (dirty[0] & /*submit*/ 1024 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*submit*/ 1024 | dirty[1] & /*$$scope*/ 256) {
     				label_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9867,7 +9867,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (207:3) {#if stage === 'loading'}
+    // (238:3) {#if stage === 'loading'}
     function create_if_block_2$1(ctx) {
     	let div4;
 
@@ -9886,7 +9886,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (210:3) {#if stage === 'success'}
+    // (241:3) {#if stage === 'success'}
     function create_if_block_1$2(ctx) {
     	let div;
     	let t;
@@ -9910,7 +9910,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (213:3) {#if stage === 'failure'}
+    // (244:3) {#if stage === 'failure'}
     function create_if_block$5(ctx) {
     	let div;
     	let t0;
@@ -9944,7 +9944,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (158:3) <Content>
+    // (189:3) <Content>
     function create_default_slot_2$1(ctx) {
     	let t0;
     	let t1;
@@ -10061,7 +10061,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (155:1) <Paper class="order-form-paper">
+    // (186:1) <Paper class="order-form-paper">
     function create_default_slot_1$2(ctx) {
     	let t0;
     	let t1;
@@ -10107,21 +10107,21 @@ var notOrder = (function (exports) {
     		p(ctx, dirty) {
     			const title_1_changes = {};
 
-    			if (dirty[0] & /*title*/ 16 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*title*/ 16 | dirty[1] & /*$$scope*/ 256) {
     				title_1_changes.$$scope = { dirty, ctx };
     			}
 
     			title_1.$set(title_1_changes);
     			const subtitle_changes = {};
 
-    			if (dirty[0] & /*description*/ 32 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*description*/ 32 | dirty[1] & /*$$scope*/ 256) {
     				subtitle_changes.$$scope = { dirty, ctx };
     			}
 
     			subtitle.$set(subtitle_changes);
     			const content_changes = {};
 
-    			if (dirty[0] & /*errorMessage, titleFailure, stage, titleSuccess, putOrder, submit, rejectOrder, cancel, commentHelper, validationErrors, comment, nameHelper, name, emailHelper, email, telHelper, tel*/ 4177679 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*errorMessage, titleFailure, stage, titleSuccess, putOrder, submit, rejectOrder, cancel, commentHelper, validationErrors, comment, nameHelper, name, emailHelper, email, telHelper, tel*/ 4177679 | dirty[1] & /*$$scope*/ 256) {
     				content_changes.$$scope = { dirty, ctx };
     			}
 
@@ -10150,7 +10150,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (154:0) <OverlayComponentStandalone on:reject="{overlayClosed}" bind:this={overlay} show={true} {closeOnClick} {closeButton}>
+    // (185:0) <OverlayComponentStandalone on:reject="{overlayClosed}" bind:this={overlay} show={true} {closeOnClick} {closeButton}>
     function create_default_slot$4(ctx) {
     	let current;
 
@@ -10173,7 +10173,7 @@ var notOrder = (function (exports) {
     		p(ctx, dirty) {
     			const paper_changes = {};
 
-    			if (dirty[0] & /*errorMessage, titleFailure, stage, titleSuccess, putOrder, submit, rejectOrder, cancel, commentHelper, validationErrors, comment, nameHelper, name, emailHelper, email, telHelper, tel, description, title*/ 4177727 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*errorMessage, titleFailure, stage, titleSuccess, putOrder, submit, rejectOrder, cancel, commentHelper, validationErrors, comment, nameHelper, name, emailHelper, email, telHelper, tel, description, title*/ 4177727 | dirty[1] & /*$$scope*/ 256) {
     				paper_changes.$$scope = { dirty, ctx };
     			}
 
@@ -10206,7 +10206,7 @@ var notOrder = (function (exports) {
     	};
 
     	const overlaycomponentstandalone = new Overlay({ props: overlaycomponentstandalone_props });
-    	/*overlaycomponentstandalone_binding*/ ctx[32](overlaycomponentstandalone);
+    	/*overlaycomponentstandalone_binding*/ ctx[38](overlaycomponentstandalone);
     	overlaycomponentstandalone.$on("reject", /*overlayClosed*/ ctx[22]);
 
     	return {
@@ -10222,7 +10222,7 @@ var notOrder = (function (exports) {
     			if (dirty[0] & /*closeOnClick*/ 64) overlaycomponentstandalone_changes.closeOnClick = /*closeOnClick*/ ctx[6];
     			if (dirty[0] & /*closeButton*/ 128) overlaycomponentstandalone_changes.closeButton = /*closeButton*/ ctx[7];
 
-    			if (dirty[0] & /*errorMessage, titleFailure, stage, titleSuccess, putOrder, submit, rejectOrder, cancel, commentHelper, validationErrors, comment, nameHelper, name, emailHelper, email, telHelper, tel, description, title*/ 4177727 | dirty[1] & /*$$scope*/ 4) {
+    			if (dirty[0] & /*errorMessage, titleFailure, stage, titleSuccess, putOrder, submit, rejectOrder, cancel, commentHelper, validationErrors, comment, nameHelper, name, emailHelper, email, telHelper, tel, description, title*/ 4177727 | dirty[1] & /*$$scope*/ 256) {
     				overlaycomponentstandalone_changes.$$scope = { dirty, ctx };
     			}
 
@@ -10238,7 +10238,7 @@ var notOrder = (function (exports) {
     			current = false;
     		},
     		d(detaching) {
-    			/*overlaycomponentstandalone_binding*/ ctx[32](null);
+    			/*overlaycomponentstandalone_binding*/ ctx[38](null);
     			destroy_component(overlaycomponentstandalone, detaching);
     		}
     	};
@@ -10288,6 +10288,9 @@ var notOrder = (function (exports) {
     	let { resultShowtime = 1000 } = $$props;
     	let { titleSuccess = "Оформление заказа успешно завершено!" } = $$props;
     	let { titleFailure = "Во время оформления заказа произошла ошибка!" } = $$props;
+    	let { redirectSuccess = false } = $$props;
+    	let { redirectFailure = false } = $$props;
+    	let { order = {} } = $$props;
 
     	let { tel = {
     		label: "Ваш номер телефона",
@@ -10330,16 +10333,19 @@ var notOrder = (function (exports) {
 
     	function collectData() {
     		return {
-    			tel: tel.enabled ? tel.value : "",
-    			name: name.enabled ? name.value : "",
-    			email: email.enabled ? email.value : "",
-    			comment: comment.enabled ? comment.value : ""
+    			client: {
+    				tel: tel.enabled ? tel.value : "",
+    				name: name.enabled ? name.value : "",
+    				email: email.enabled ? email.value : "",
+    				comment: comment.enabled ? comment.value : ""
+    			},
+    			order
     		};
     	}
 
-    	let { resolveOrder = () => {
+    	let { resolveOrder = data => {
     		overlay.$destroy();
-    		dispatch("resolve", collectData);
+    		dispatch("resolve", data);
     	} } = $$props;
 
     	let { rejectOrder = () => {
@@ -10347,35 +10353,60 @@ var notOrder = (function (exports) {
     		dispatch("reject", {});
     	} } = $$props;
 
+    	function onSuccess(res) {
+    		$$invalidate(15, stage = "success");
+
+    		setTimeout(
+    			() => {
+    				if (redirectSuccess) {
+    					document.location.href = redirectSuccess;
+    				} else {
+    					resolveOrder(res);
+    				}
+    			},
+    			resultShowtime
+    		);
+    	}
+
+    	function onValidationErrors(res) {
+    		$$invalidate(15, stage = "failure");
+    		$$invalidate(16, errorMessage = res.message);
+    		$$invalidate(17, validationErrors = res.errors);
+
+    		setTimeout(
+    			() => {
+    				$$invalidate(15, stage = "filling");
+    			},
+    			resultShowtime
+    		);
+    	}
+
+    	function onException(e) {
+    		$$invalidate(15, stage = "failure");
+    		$$invalidate(16, errorMessage = e.message);
+
+    		setTimeout(
+    			() => {
+    				if (redirectFailure) {
+    					document.location.href = redirectSuccess;
+    				} else {
+    					rejectOrder(e);
+    				}
+    			},
+    			resultShowtime
+    		);
+    	}
+
     	let { putOrder = () => {
     		$$invalidate(15, stage = "loading");
 
     		putData(url, collectData()).then(res => {
     			if (res.status === "ok") {
-    				$$invalidate(15, stage = "success");
-
-    				setTimeout(
-    					() => {
-    						$$invalidate(15, stage = "filling");
-    					},
-    					resultShowtime
-    				);
+    				onSuccess(res);
     			} else {
-    				$$invalidate(15, stage = "failure");
-    				$$invalidate(16, errorMessage = res.message);
-    				$$invalidate(17, validationErrors = res.errors);
-
-    				setTimeout(
-    					() => {
-    						$$invalidate(15, stage = "filling");
-    					},
-    					resultShowtime
-    				);
+    				onValidationErrors(res);
     			}
-    		}).catch(e => {
-    			$$invalidate(15, stage = "failure");
-    			$$invalidate(16, errorMessage = e.message);
-    		});
+    		}).catch(onException);
     	} } = $$props;
 
     	function textfield_value_binding(value) {
@@ -10413,13 +10444,16 @@ var notOrder = (function (exports) {
     		if ("resultShowtime" in $$props) $$invalidate(24, resultShowtime = $$props.resultShowtime);
     		if ("titleSuccess" in $$props) $$invalidate(8, titleSuccess = $$props.titleSuccess);
     		if ("titleFailure" in $$props) $$invalidate(9, titleFailure = $$props.titleFailure);
+    		if ("redirectSuccess" in $$props) $$invalidate(25, redirectSuccess = $$props.redirectSuccess);
+    		if ("redirectFailure" in $$props) $$invalidate(26, redirectFailure = $$props.redirectFailure);
+    		if ("order" in $$props) $$invalidate(27, order = $$props.order);
     		if ("tel" in $$props) $$invalidate(0, tel = $$props.tel);
     		if ("email" in $$props) $$invalidate(1, email = $$props.email);
     		if ("name" in $$props) $$invalidate(2, name = $$props.name);
     		if ("comment" in $$props) $$invalidate(3, comment = $$props.comment);
     		if ("submit" in $$props) $$invalidate(10, submit = $$props.submit);
     		if ("cancel" in $$props) $$invalidate(11, cancel = $$props.cancel);
-    		if ("resolveOrder" in $$props) $$invalidate(25, resolveOrder = $$props.resolveOrder);
+    		if ("resolveOrder" in $$props) $$invalidate(28, resolveOrder = $$props.resolveOrder);
     		if ("rejectOrder" in $$props) $$invalidate(12, rejectOrder = $$props.rejectOrder);
     		if ("putOrder" in $$props) $$invalidate(13, putOrder = $$props.putOrder);
     	};
@@ -10481,9 +10515,15 @@ var notOrder = (function (exports) {
     		overlayClosed,
     		url,
     		resultShowtime,
+    		redirectSuccess,
+    		redirectFailure,
+    		order,
     		resolveOrder,
     		dispatch,
     		collectData,
+    		onSuccess,
+    		onValidationErrors,
+    		onException,
     		textfield_value_binding,
     		textfield_value_binding_1,
     		textfield_value_binding_2,
@@ -10511,13 +10551,16 @@ var notOrder = (function (exports) {
     				resultShowtime: 24,
     				titleSuccess: 8,
     				titleFailure: 9,
+    				redirectSuccess: 25,
+    				redirectFailure: 26,
+    				order: 27,
     				tel: 0,
     				email: 1,
     				name: 2,
     				comment: 3,
     				submit: 10,
     				cancel: 11,
-    				resolveOrder: 25,
+    				resolveOrder: 28,
     				rejectOrder: 12,
     				putOrder: 13
     			},
