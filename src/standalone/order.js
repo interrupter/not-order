@@ -4,7 +4,7 @@ import OrderComponent from './order.svelte';
 function launchOrderForm(options = {}){
   return new Promise((resolve, reject)=>{
     try{
-      let comp = new notOrder.OrderComponent({
+      let comp = new OrderComponent({
         target: document.body,
         props: {
           closeButton: false,
