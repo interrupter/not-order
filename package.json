@@ -1,6 +1,6 @@
 {
     "name": "not-order",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "not-* family order plugin",
     "main": "index.js",
     "repository": "git@github.com:interrupter/not-order.git",
@@ -20,7 +20,7 @@
         "docs": "./node_modules/.bin/jsdoc -c jsdoc.json",
         "cover": "_ENV_NODE_='liquid' nyc npm run test"
     },
-    "svelte": "src/index.js",
+    "svelte": "src/standalone/index.js",
     "devDependencies": {
         "@babel/core": "^7.9.6",
         "@babel/plugin-transform-arrow-functions": "^7.8.3",
@@ -46,7 +46,7 @@
         "mocha": "^7.1.2",
         "mongodb-memory-server": "^6.5.2",
         "node-sass": "^4.14.0",
-        "not-overlay": "0.0.5",
+        "not-overlay": "0.0.7",
         "nyc": "^15.0.1",
         "request": "^2.88.2",
         "rollup": "^2.7.6",

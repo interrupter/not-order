@@ -2643,7 +2643,6 @@ var notOrder = (function (exports) {
     function create_if_block$1(ctx) {
     	let div;
     	let t;
-    	let main;
     	let div_transition;
     	let current;
     	let dispose;
@@ -2656,18 +2655,16 @@ var notOrder = (function (exports) {
     			div = element("div");
     			if (if_block) if_block.c();
     			t = space();
-    			main = element("main");
     			if (default_slot) default_slot.c();
-    			attr(div, "class", "not-overlay svelte-1y5np01");
+    			attr(div, "class", "not-overlay svelte-15dptf1");
     		},
     		m(target, anchor, remount) {
     			insert(target, div, anchor);
     			if (if_block) if_block.m(div, null);
     			append(div, t);
-    			append(div, main);
 
     			if (default_slot) {
-    				default_slot.m(main, null);
+    				default_slot.m(div, null);
     			}
 
     			current = true;
@@ -10583,7 +10580,7 @@ var notOrder = (function (exports) {
     function launchOrderForm(options = {}){
       return new Promise((resolve, reject)=>{
         try{
-          let comp = new notOrder.OrderComponent({
+          let comp = new Order({
             target: document.body,
             props: {
               closeButton: false,
