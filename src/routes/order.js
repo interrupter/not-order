@@ -30,13 +30,13 @@ const
 				orderData.user = req.user.id
 			}
 			(App.getModel('Order')).add(orderData)
-				.then((res)=>{
-					App.logger.log(`new order ${res.orderID}`);
-					return res.status(200).json({
-						status: 'ok',
-						orderID: res.orderID
-					});
-				})
+					.then((result)=>{
+						App.logger.log(`new order ${result.orderID}`);
+						return res.status(200).json({
+							status: 'ok',
+							orderID: result.orderID
+						});
+					})
 				.catch((e)=>{
 					App.report(e);
 					return res.status(505).json({
