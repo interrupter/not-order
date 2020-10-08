@@ -1,4 +1,4 @@
-module.exports = {
+const manifest = {
 	model: 'order',
 	url: '/api/:modelName',
 	fields: {
@@ -40,7 +40,8 @@ module.exports = {
       method: 	'PUT',
 			postFix: 	'',
 			data: 		['record', 'filter', 'sorter', 'search', 'pager'],
-			title: 		'create_order',
+			title: 		'Оформление заказа',
+			description: 'Для обработки вашего заказа, пожалуйста, заполните и отправьте нам эту форму.',
 			fields: [
 				['tel', 'email', 'name'],
 				'comment'
@@ -53,3 +54,5 @@ module.exports = {
 		},
 	}
 };
+
+export default manifest;

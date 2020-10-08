@@ -13,52 +13,44 @@ describe('notOrder browser testing', function() {
 ////open good - close
     cy.get('button#test-good').click();
     cy.get('.order-form-cancel').should('exist');
-    cy.get('.not-overlay').should('exist');
-    cy.get('.not-overlay .buttons-row .order-form-cancel').click();
+    cy.get('.is-overlay').should('exist');
+    cy.get('.is-overlay .buttons .order-form-cancel').click();
     cy.get('.order-form-cancel').should('not.exist');
-    cy.get('.not-overlay').should('not.exist');
+    cy.get('.is-overlay').should('not.exist');
 ////open bad - close
     cy.get('button#test-bad').click();
     cy.get('.order-form-cancel').should('exist');
-    cy.get('.not-overlay').should('exist');
-    cy.get('.not-overlay .buttons-row .order-form-cancel').click();
+    cy.get('.is-overlay').should('exist');
+    cy.get('.is-overlay .buttons .order-form-cancel').click();
     cy.get('.order-form-cancel').should('not.exist');
-    cy.get('.not-overlay').should('not.exist');
+    cy.get('.is-overlay').should('not.exist');
 ////open good - order - auto close
     cy.get('button#test-good').click();
     cy.get('.order-form-cancel').should('exist');
-    cy.get('.not-overlay').should('exist');
-    cy.get('.not-overlay .buttons-row .order-form-submit').click();
-    cy.get('.not-overlay .lds-ellipsis').should('exist');
-    cy.get('.not-overlay .centered')
+    cy.get('.is-overlay').should('exist');
+    cy.get('.is-overlay .buttons .order-form-submit').click();
+    cy.get('.is-overlay .notification')
       .should(($p) => {
         // should have found 3 elements
         expect($p).to.have.length(1)
         // make sure the first contains some text content
         expect($p.first()).to.contain('Оформление заказа успешно завершено!')
       });
-    cy.wait(1100);
-    cy.get('.not-overlay').should('not.exist');
+    cy.wait(200);
+    cy.get('.is-overlay').should('not.exist');
 ////open bad - order - auto close
     cy.get('button#test-bad').click();
     cy.get('.order-form-cancel').should('exist');
-    cy.get('.not-overlay').should('exist');
-    cy.get('.not-overlay .buttons-row .order-form-submit').click();
-    cy.get('.not-overlay .lds-ellipsis').should('exist');
-    cy.get('.not-overlay .centered')
-      .should(($p) => {
-        // should have found 3 elements
-        expect($p).to.have.length(1)
-      // make sure the first contains some text content
-        expect($p.first()).to.contain('Во время оформления заказа произошла ошибка!')
-      });
-    cy.wait(1100);
-    cy.get('.not-overlay .order-form-tel label').should('exist').should('have.class', 'mdc-text-field--invalid');
-    cy.get('.not-overlay .order-form-email label').should('exist').should('have.class', 'mdc-text-field--invalid');
-    cy.get('.not-overlay .order-form-name label').should('exist').should('have.class', 'mdc-text-field--invalid');
-    cy.get('.not-overlay .order-form-comment label').should('exist').should('have.class', 'mdc-text-field--invalid');
-    cy.get('.not-overlay .buttons-row .order-form-cancel').click();
+    cy.get('.is-overlay').should('exist');
+    cy.get('.is-overlay .buttons .order-form-submit').click();
+    cy.get('.is-overlay .edit-form-error.notification.is-danger').should('exist');
+    cy.wait(200);
+    cy.get('.is-overlay .form-field-UITelephone-tel p.help').should('exist').should('have.class', 'is-danger');
+    cy.get('.is-overlay .form-field-UIEmail-email p.help').should('exist').should('have.class', 'is-danger');
+    cy.get('.is-overlay .form-field-UITextfield-name p.help').should('exist').should('have.class', 'is-danger');
+    cy.get('.is-overlay .form-field-UITextarea-comment p.help').should('exist').should('have.class', 'is-danger');
+    cy.get('.is-overlay .buttons .order-form-cancel').click();
     cy.get('.order-form-cancel').should('not.exist');
-    cy.get('.not-overlay').should('not.exist');
+    cy.get('.is-overlay').should('not.exist');
   });
 });

@@ -4,6 +4,8 @@ import svelte from 'rollup-plugin-svelte';
 import postcss from 'rollup-plugin-postcss';
 import resolve from "rollup-plugin-node-resolve";
 
+
+
 export default {
   input: 'src/standalone/order.js',
   output: {
