@@ -31,6 +31,7 @@ const manifest = {
 			label: 'Дополнительно',
 			placeholder: 'Дополнительные сведения',
 			value: '',
+			rows: 3,
 			enabled: true,
 			required: true
 		},
