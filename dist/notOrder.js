@@ -147,6 +147,9 @@ var notOrder = (function (exports) {
     function set_input_value(input, value) {
         input.value = value == null ? '' : value;
     }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
     function select_option(select, value) {
         for (let i = 0; i < select.options.length; i += 1) {
             const option = select.options[i];
@@ -656,8 +659,8 @@ var notOrder = (function (exports) {
     	let mounted;
     	let dispose;
     	let if_block = /*closeButton*/ ctx[0] && create_if_block_1(ctx);
-    	const default_slot_template = /*#slots*/ ctx[7].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[6], null);
+    	const default_slot_template = /*#slots*/ ctx[8].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[7], null);
 
     	return {
     		c() {
@@ -665,7 +668,8 @@ var notOrder = (function (exports) {
     			if (if_block) if_block.c();
     			t = space();
     			if (default_slot) default_slot.c();
-    			attr(div, "class", "is-overlay");
+    			attr(div, "class", "is-overlay not-overlay svelte-101um5j");
+    			set_style(div, "z-index", zIndexStep * /*layer*/ ctx[3]);
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -679,7 +683,7 @@ var notOrder = (function (exports) {
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen(div, "click", /*overlayClick*/ ctx[3]);
+    				dispose = listen(div, "click", /*overlayClick*/ ctx[4]);
     				mounted = true;
     			}
     		},
@@ -698,9 +702,13 @@ var notOrder = (function (exports) {
     			}
 
     			if (default_slot) {
-    				if (default_slot.p && dirty & /*$$scope*/ 64) {
-    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[6], dirty, null, null);
+    				if (default_slot.p && dirty & /*$$scope*/ 128) {
+    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[7], dirty, null, null);
     				}
+    			}
+
+    			if (!current || dirty & /*layer*/ 8) {
+    				set_style(div, "z-index", zIndexStep * /*layer*/ ctx[3]);
     			}
     		},
     		i(local) {
@@ -731,7 +739,7 @@ var notOrder = (function (exports) {
     	};
     }
 
-    // (63:1) {#if closeButton}
+    // (66:1) {#if closeButton}
     function create_if_block_1(ctx) {
     	let button;
     	let button_class_value;
@@ -741,18 +749,18 @@ var notOrder = (function (exports) {
     	return {
     		c() {
     			button = element("button");
-    			attr(button, "class", button_class_value = "delete is-" + /*closeSize*/ ctx[2] + " svelte-15lkswz");
+    			attr(button, "class", button_class_value = "delete is-" + /*closeSize*/ ctx[2] + " svelte-101um5j");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
 
     			if (!mounted) {
-    				dispose = listen(button, "click", /*closeButtonClick*/ ctx[4]);
+    				dispose = listen(button, "click", /*closeButtonClick*/ ctx[5]);
     				mounted = true;
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*closeSize*/ 4 && button_class_value !== (button_class_value = "delete is-" + /*closeSize*/ ctx[2] + " svelte-15lkswz")) {
+    			if (dirty & /*closeSize*/ 4 && button_class_value !== (button_class_value = "delete is-" + /*closeSize*/ ctx[2] + " svelte-101um5j")) {
     				attr(button, "class", button_class_value);
     			}
     		},
@@ -819,6 +827,8 @@ var notOrder = (function (exports) {
     	};
     }
 
+    const zIndexStep = 1000;
+
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	let overflowSave = "";
@@ -827,6 +837,7 @@ var notOrder = (function (exports) {
     	let { show = true } = $$props;
     	let { closeOnClick = true } = $$props;
     	let { closeSize = "normal" } = $$props;
+    	let { layer = 1 } = $$props;
 
     	function overlayClick(e) {
     		if (closeOnClick) {
@@ -849,7 +860,7 @@ var notOrder = (function (exports) {
     	}
 
     	onMount(() => {
-    		$$invalidate(8, overflowSave = document.body.style.overflow);
+    		$$invalidate(9, overflowSave = document.body.style.overflow);
     	});
 
     	onDestroy(() => {
@@ -859,14 +870,14 @@ var notOrder = (function (exports) {
     	$$self.$$set = $$props => {
     		if ("closeButton" in $$props) $$invalidate(0, closeButton = $$props.closeButton);
     		if ("show" in $$props) $$invalidate(1, show = $$props.show);
-    		if ("closeOnClick" in $$props) $$invalidate(5, closeOnClick = $$props.closeOnClick);
+    		if ("closeOnClick" in $$props) $$invalidate(6, closeOnClick = $$props.closeOnClick);
     		if ("closeSize" in $$props) $$invalidate(2, closeSize = $$props.closeSize);
-    		if ("$$scope" in $$props) $$invalidate(6, $$scope = $$props.$$scope);
+    		if ("layer" in $$props) $$invalidate(3, layer = $$props.layer);
+    		if ("$$scope" in $$props) $$invalidate(7, $$scope = $$props.$$scope);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*show, overflowSave*/ 258) {
-    			//export let layer = 1;
+    		if ($$self.$$.dirty & /*show, overflowSave*/ 514) {
     			 if (show) {
     				document.body.style.overflow = "hidden";
     			} else {
@@ -879,6 +890,7 @@ var notOrder = (function (exports) {
     		closeButton,
     		show,
     		closeSize,
+    		layer,
     		overlayClick,
     		closeButtonClick,
     		closeOnClick,
@@ -894,8 +906,9 @@ var notOrder = (function (exports) {
     		init(this, options, instance, create_fragment, safe_not_equal, {
     			closeButton: 0,
     			show: 1,
-    			closeOnClick: 5,
-    			closeSize: 2
+    			closeOnClick: 6,
+    			closeSize: 2,
+    			layer: 3
     		});
     	}
     }
@@ -13812,7 +13825,7 @@ var notOrder = (function (exports) {
     		};
     	}
 
-    	static report(e) {
+    	static report(name, e) {
     		if (this.getApp() && this.getApp().getOptions('services.errorReporter')) {
     			let reporter = this.getApp().getOptions('services.errorReporter');
     			if (reporter && reporter.report) {
@@ -13830,6 +13843,33 @@ var notOrder = (function (exports) {
     			this.trace(...arguments);
     		}
     	}
+
+    	static trimBackslash(str){
+    		if(str.indexOf('/') === 0){
+    			str = str.substring(1);
+    		}
+    		if(str[str.length - 1] === '/'){
+    			str = str.substring(0, str.length - 1);
+    		}
+    		return str;
+    	}
+
+    	/**
+    	*	Builds URL with structure like prefix/module/model/id/action
+    	* If some part absent or set to false it will be excluded from result
+    	*
+    	*	@return {string}	url path
+    	*/
+    	static buildURL({	prefix, module, model, id, action	}){
+    		let url = ['/'];
+    		if(prefix)	{	url.push(encodeURIComponent(this.trimBackslash(prefix)));}
+    		if(module)	{ url.push(encodeURIComponent(this.trimBackslash(module)));}
+    		if(model)		{ url.push(encodeURIComponent(this.trimBackslash(model)));}
+    		if(id)			{ url.push(encodeURIComponent(this.trimBackslash(id)));			}
+    		if(action)	{ url.push(encodeURIComponent(this.trimBackslash(action)));	}
+    		return url.join('/').replace(/\/\//g, '/');
+    	}
+
 
     	static capitalizeFirstLetter(name) {
     		return name.charAt(0).toUpperCase() + name.slice(1);
@@ -14107,6 +14147,8 @@ var notOrder = (function (exports) {
     		this.setWorking('mode', OPT_MODE_HASH);
     	}
 
+
+    	// root should start and end with /
     	setRoot(root) {
     		this.setWorking('root', (root && root !== '/') ? '/' + this.clearSlashes(root) + '/' : '/');
     		return this;
@@ -14255,6 +14297,13 @@ var notOrder = (function (exports) {
     	}
 
     	getFullRoute(path = '') {
+    		path = this.clearSlashes(path);
+    		let root = this.getWorking('root');
+    		if (root !== '/'){
+    			if(path.indexOf(root.substring(1)) === 0){
+    				return '/' + path;
+    			}
+    		}
     		return this.getWorking('root') + this.clearSlashes(path);
     	}
 
@@ -14356,7 +14405,7 @@ var notOrder = (function (exports) {
     	};
 
     	uiform = new UIForm({ props: uiform_props });
-    	/*uiform_binding*/ ctx[18](uiform);
+    	/*uiform_binding*/ ctx[17](uiform);
 
     	uiform.$on("submit", function () {
     		if (is_function(/*putOrder*/ ctx[7])) /*putOrder*/ ctx[7].apply(this, arguments);
@@ -14399,7 +14448,7 @@ var notOrder = (function (exports) {
     		},
     		d(detaching) {
     			if (detaching) detach(div);
-    			/*uiform_binding*/ ctx[18](null);
+    			/*uiform_binding*/ ctx[17](null);
     			destroy_component(uiform);
     		}
     	};
@@ -14418,7 +14467,7 @@ var notOrder = (function (exports) {
     	};
 
     	uioverlay = new Ui_overlay({ props: uioverlay_props });
-    	/*uioverlay_binding*/ ctx[19](uioverlay);
+    	/*uioverlay_binding*/ ctx[18](uioverlay);
     	uioverlay.$on("reject", /*overlayClosed*/ ctx[10]);
 
     	return {
@@ -14434,7 +14483,7 @@ var notOrder = (function (exports) {
     			if (dirty & /*closeOnClick*/ 4) uioverlay_changes.closeOnClick = /*closeOnClick*/ ctx[2];
     			if (dirty & /*closeButton*/ 8) uioverlay_changes.closeButton = /*closeButton*/ ctx[3];
 
-    			if (dirty & /*$$scope, manifest, titleSuccess, titleFailure, options, inpForm, putOrder, rejectOrder*/ 33555187) {
+    			if (dirty & /*$$scope, manifest, titleSuccess, titleFailure, options, inpForm, putOrder, rejectOrder*/ 16777971) {
     				uioverlay_changes.$$scope = { dirty, ctx };
     			}
 
@@ -14450,7 +14499,7 @@ var notOrder = (function (exports) {
     			current = false;
     		},
     		d(detaching) {
-    			/*uioverlay_binding*/ ctx[19](null);
+    			/*uioverlay_binding*/ ctx[18](null);
     			destroy_component(uioverlay, detaching);
     		}
     	};
@@ -14493,7 +14542,6 @@ var notOrder = (function (exports) {
     	let { titleSuccess = "Оформление заказа успешно завершено!" } = $$props;
     	let { titleFailure = "Во время оформления заказа произошла ошибка!" } = $$props;
     	let { redirectSuccess = false } = $$props;
-    	let { redirectFailure = false } = $$props;
 
     	function overlayClosed() {
     		rejectOrder();
@@ -14599,8 +14647,7 @@ var notOrder = (function (exports) {
     		if ("titleSuccess" in $$props) $$invalidate(4, titleSuccess = $$props.titleSuccess);
     		if ("titleFailure" in $$props) $$invalidate(5, titleFailure = $$props.titleFailure);
     		if ("redirectSuccess" in $$props) $$invalidate(15, redirectSuccess = $$props.redirectSuccess);
-    		if ("redirectFailure" in $$props) $$invalidate(16, redirectFailure = $$props.redirectFailure);
-    		if ("resolveOrder" in $$props) $$invalidate(17, resolveOrder = $$props.resolveOrder);
+    		if ("resolveOrder" in $$props) $$invalidate(16, resolveOrder = $$props.resolveOrder);
     		if ("rejectOrder" in $$props) $$invalidate(6, rejectOrder = $$props.rejectOrder);
     		if ("putOrder" in $$props) $$invalidate(7, putOrder = $$props.putOrder);
     	};
@@ -14622,7 +14669,6 @@ var notOrder = (function (exports) {
     		url,
     		resultShowtime,
     		redirectSuccess,
-    		redirectFailure,
     		resolveOrder,
     		uiform_binding,
     		uioverlay_binding
@@ -14645,8 +14691,7 @@ var notOrder = (function (exports) {
     			titleSuccess: 4,
     			titleFailure: 5,
     			redirectSuccess: 15,
-    			redirectFailure: 16,
-    			resolveOrder: 17,
+    			resolveOrder: 16,
     			rejectOrder: 6,
     			putOrder: 7
     		});
@@ -14784,6 +14829,8 @@ var notOrder = (function (exports) {
 
     exports.OrderComponent = Order;
     exports.launchOrderForm = launchOrderForm;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
     return exports;
 

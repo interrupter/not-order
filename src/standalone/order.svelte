@@ -24,7 +24,6 @@
 	export let titleFailure = 'Во время оформления заказа произошла ошибка!';
 
 	export let redirectSuccess = false;
-	export let redirectFailure = false;
 
 	function overlayClosed(){
 		rejectOrder();
