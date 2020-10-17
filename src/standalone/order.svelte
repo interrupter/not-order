@@ -14,6 +14,7 @@
 	export let manifest = false;
 	export let options = {};
 	export let validators = false;
+	export let order = {};
 	export let data = {};
 	export let url = '/api/order';
 	export let closeOnClick = true;
@@ -52,14 +53,14 @@
 		let opts = getStandartRequestOptions();
 		const response = await fetch(reqUrl, Object.assign(opts, {
 			method: 'PUT',
-			body: JSON.stringify({client, data}),
+			body: JSON.stringify({client, order}),
 		}));
 		return await response.json();
 	}
 
-	export let resolveOrder = (data) => {
+	export let resolveOrder = (val) => {
 			overlay.$destroy();
-			dispatch('resolve', data);
+			dispatch('resolve', val);
 		};
 
 	export let rejectOrder = () => {
