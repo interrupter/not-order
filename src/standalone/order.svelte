@@ -48,11 +48,11 @@
 		};
 	}
 
-	async function putData(reqUrl, data) {
+	async function putData(reqUrl, client) {
 		let opts = getStandartRequestOptions();
 		const response = await fetch(reqUrl, Object.assign(opts, {
 			method: 'PUT',
-			body: JSON.stringify(data)
+			body: JSON.stringify({client, data}),
 		}));
 		return await response.json();
 	}
