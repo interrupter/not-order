@@ -3,7 +3,8 @@ import Validators from '../common/validators.js';
 import {
 	notController,
 	Breadcrumbs,
-	UIError
+	UIError,
+	UISuccess,
 } from 'not-bulma';
 
 
@@ -105,10 +106,44 @@ class ncOrderOptions extends notController {
 								options: res.result
 							}
 						});
+						this.ui.details.$on('save', e => this.saveToServer(e.detail));
 					} else {
 						this.error(res);
-						this.ui.error = new UIError({
-							target: this.els.main,
+						this.ui.message = new UIError({
+							target: this.els.bottom,
+							props: {
+								title: 'Произошла ошибка',
+								message: res.error ? res.error : CommonLocal.ERROR_DEFAULT
+							}
+						});
+					}
+				}).catch(e => this.report(e));
+		} catch (e) {
+			this.error(e);
+			this.report(e);
+		}
+	}
+
+	saveToServer(options){
+		try {
+			if(this.ui.message){	this.ui.message.$destroy();	}
+			this.getModel()({
+					moduleName: CommonLocal.MODULE.name.toLowerCase(),
+					options
+				}).$updateForModule()
+				.then((res) => {
+					if (res.status === 'ok') {
+						this.ui.message = new UISuccess({
+							target: this.els.bottom,
+							props: {
+								title: 'Настройки сохранены',
+								message: ''
+							}
+						});
+					} else {
+						this.error(res);
+						this.ui.message = new UIError({
+							target: this.els.bottom,
 							props: {
 								title: 'Произошла ошибка',
 								message: res.error ? res.error : CommonLocal.ERROR_DEFAULT

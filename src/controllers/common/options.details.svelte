@@ -31,7 +31,7 @@
         <label class="label" for="edit-order-options-redirect_of_requests_to_other_server"></label>
       </div>
     </div>
-    {#if options.redirect_of_requests_to_other_server }
+    {#if options.redirect_of_requests_to_other_server.value }
     <div class="field">
       <p class="control is-expanded">
         <input class="input is-success" type="text" placeholder="url куда предеавать данные" bind:value={options.redirect_of_requests_to_other_server_url.value}  {readonly} {disabled} />
