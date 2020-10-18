@@ -14405,7 +14405,7 @@ var notOrder = (function (exports) {
     	};
 
     	uiform = new UIForm({ props: uiform_props });
-    	/*uiform_binding*/ ctx[17](uiform);
+    	/*uiform_binding*/ ctx[18](uiform);
 
     	uiform.$on("submit", function () {
     		if (is_function(/*putOrder*/ ctx[7])) /*putOrder*/ ctx[7].apply(this, arguments);
@@ -14448,7 +14448,7 @@ var notOrder = (function (exports) {
     		},
     		d(detaching) {
     			if (detaching) detach(div);
-    			/*uiform_binding*/ ctx[17](null);
+    			/*uiform_binding*/ ctx[18](null);
     			destroy_component(uiform);
     		}
     	};
@@ -14467,7 +14467,7 @@ var notOrder = (function (exports) {
     	};
 
     	uioverlay = new Ui_overlay({ props: uioverlay_props });
-    	/*uioverlay_binding*/ ctx[18](uioverlay);
+    	/*uioverlay_binding*/ ctx[19](uioverlay);
     	uioverlay.$on("reject", /*overlayClosed*/ ctx[10]);
 
     	return {
@@ -14483,7 +14483,7 @@ var notOrder = (function (exports) {
     			if (dirty & /*closeOnClick*/ 4) uioverlay_changes.closeOnClick = /*closeOnClick*/ ctx[2];
     			if (dirty & /*closeButton*/ 8) uioverlay_changes.closeButton = /*closeButton*/ ctx[3];
 
-    			if (dirty & /*$$scope, manifest, titleSuccess, titleFailure, options, inpForm, putOrder, rejectOrder*/ 16777971) {
+    			if (dirty & /*$$scope, manifest, titleSuccess, titleFailure, options, inpForm, putOrder, rejectOrder*/ 67109619) {
     				uioverlay_changes.$$scope = { dirty, ctx };
     			}
 
@@ -14499,7 +14499,7 @@ var notOrder = (function (exports) {
     			current = false;
     		},
     		d(detaching) {
-    			/*uioverlay_binding*/ ctx[18](null);
+    			/*uioverlay_binding*/ ctx[19](null);
     			destroy_component(uioverlay, detaching);
     		}
     	};
@@ -14517,23 +14517,13 @@ var notOrder = (function (exports) {
     	};
     }
 
-    async function putData(reqUrl, data) {
-    	let opts = getStandartRequestOptions();
-
-    	const response = await fetch(reqUrl, Object.assign(opts, {
-    		method: "PUT",
-    		body: JSON.stringify(data)
-    	}));
-
-    	return await response.json();
-    }
-
     function instance$f($$self, $$props, $$invalidate) {
     	let overlay, inpForm;
     	let dispatch = createEventDispatcher();
     	let { manifest = false } = $$props;
     	let { options = {} } = $$props;
     	let { validators = false } = $$props;
+    	let { order = {} } = $$props;
     	let { data = {} } = $$props;
     	let { url = "/api/order" } = $$props;
     	let { closeOnClick = true } = $$props;
@@ -14553,9 +14543,20 @@ var notOrder = (function (exports) {
     		}
     	});
 
-    	let { resolveOrder = data => {
+    	async function putData(reqUrl, client) {
+    		let opts = getStandartRequestOptions();
+
+    		const response = await fetch(reqUrl, Object.assign(opts, {
+    			method: "PUT",
+    			body: JSON.stringify({ client, order })
+    		}));
+
+    		return await response.json();
+    	}
+
+    	let { resolveOrder = val => {
     		overlay.$destroy();
-    		dispatch("resolve", data);
+    		dispatch("resolve", val);
     	} } = $$props;
 
     	let { rejectOrder = () => {
@@ -14639,15 +14640,16 @@ var notOrder = (function (exports) {
     		if ("manifest" in $$props) $$invalidate(0, manifest = $$props.manifest);
     		if ("options" in $$props) $$invalidate(1, options = $$props.options);
     		if ("validators" in $$props) $$invalidate(11, validators = $$props.validators);
-    		if ("data" in $$props) $$invalidate(12, data = $$props.data);
-    		if ("url" in $$props) $$invalidate(13, url = $$props.url);
+    		if ("order" in $$props) $$invalidate(12, order = $$props.order);
+    		if ("data" in $$props) $$invalidate(13, data = $$props.data);
+    		if ("url" in $$props) $$invalidate(14, url = $$props.url);
     		if ("closeOnClick" in $$props) $$invalidate(2, closeOnClick = $$props.closeOnClick);
     		if ("closeButton" in $$props) $$invalidate(3, closeButton = $$props.closeButton);
-    		if ("resultShowtime" in $$props) $$invalidate(14, resultShowtime = $$props.resultShowtime);
+    		if ("resultShowtime" in $$props) $$invalidate(15, resultShowtime = $$props.resultShowtime);
     		if ("titleSuccess" in $$props) $$invalidate(4, titleSuccess = $$props.titleSuccess);
     		if ("titleFailure" in $$props) $$invalidate(5, titleFailure = $$props.titleFailure);
-    		if ("redirectSuccess" in $$props) $$invalidate(15, redirectSuccess = $$props.redirectSuccess);
-    		if ("resolveOrder" in $$props) $$invalidate(16, resolveOrder = $$props.resolveOrder);
+    		if ("redirectSuccess" in $$props) $$invalidate(16, redirectSuccess = $$props.redirectSuccess);
+    		if ("resolveOrder" in $$props) $$invalidate(17, resolveOrder = $$props.resolveOrder);
     		if ("rejectOrder" in $$props) $$invalidate(6, rejectOrder = $$props.rejectOrder);
     		if ("putOrder" in $$props) $$invalidate(7, putOrder = $$props.putOrder);
     	};
@@ -14665,6 +14667,7 @@ var notOrder = (function (exports) {
     		inpForm,
     		overlayClosed,
     		validators,
+    		order,
     		data,
     		url,
     		resultShowtime,
@@ -14683,15 +14686,16 @@ var notOrder = (function (exports) {
     			manifest: 0,
     			options: 1,
     			validators: 11,
-    			data: 12,
-    			url: 13,
+    			order: 12,
+    			data: 13,
+    			url: 14,
     			closeOnClick: 2,
     			closeButton: 3,
-    			resultShowtime: 14,
+    			resultShowtime: 15,
     			titleSuccess: 4,
     			titleFailure: 5,
-    			redirectSuccess: 15,
-    			resolveOrder: 16,
+    			redirectSuccess: 16,
+    			resolveOrder: 17,
     			rejectOrder: 6,
     			putOrder: 7
     		});
@@ -14731,6 +14735,7 @@ var notOrder = (function (exports) {
     			label: 'Дополнительно',
     			placeholder: 'Дополнительные сведения',
     			value: '',
+    			rows: 3,
     			enabled: true,
     			required: true
     		},
