@@ -41,12 +41,24 @@ exports.add = exports._add = (req, res, next) => {
       client: req.body.client,
       content: req.body.order,
     };
+    const Stat = App.getModel('Statistic');
     if (req.user) {
       orderData.user = req.user.id
     }
     (App.getModel('Order')).add(orderData)
-      .then((result) => {
+      .then(async (result) => {
         App.logger.log(`new order ${result.orderID}`);
+        if (Stat){
+          await Stat.add(result._id,
+            {
+              id:			  result.orderID,
+              action: 	'add',
+              model: 		MODEL_NAME,
+              user: 		orderData.user,
+              session: 	orderData.sessionId,
+              ip:			  orderData.ip
+            });
+        }
         return res.status(200).json({
           status: 'ok',
           orderID: result.orderID
