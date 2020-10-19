@@ -19,6 +19,7 @@ const
     },
   },
   App = require('not-node').Application,
+  notCommon = require('not-node').notCommon,
   metaExtend = require('not-meta').extend,
   metaRoute = require('not-meta').Route,
   validator = require('validator'),
@@ -53,7 +54,7 @@ exports.add = exports._add = (req, res, next) => {
             {
               id:			  result.orderID,
               action: 	'add',
-              model: 		MODEL_NAME,
+              model: 		notCommon.firstLetterToLower(MODEL_NAME),
               user: 		orderData.user,
               session: 	orderData.sessionId,
               ip:			  orderData.ip
