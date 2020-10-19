@@ -23,28 +23,83 @@ class ncOrder extends ncCRUD{
 		this.setOptions('role', 'root');
 		this.setOptions('urlSchemes', schemes);
 		this.setOptions('list', {
+			interface: {
+        factory: this.getModel(),
+        combined: true,
+        combinedAction: 'listAndCount'
+      },
+      pager: {
+        size: 100,
+        page: 0
+      },
+      showSelect: true,
+      showSearch: true,
+      idField: '_id',
+			sorter:{
+				'orderID': -1
+			},
 			fields: [{
 				path: ':orderID',
 				title: 'ID',
 				searchable: true,
 				sortable: true
 			}, {
-				path: ':sessionId',
-				title: 'Session',
-				searchable: true,
-				sortable: true
+				path: ':client',
+				title: 'Клиент',
+				type: 'tag',
+				preprocessor: (value)=>{
+					return [{
+						id: 1,
+						color: 'info',
+						title: 'ФИО',
+						value: value.name
+					},{
+						id: 2,
+						color: 'info',
+						title: 'Тел',
+						value: value.tel
+					},{
+						id: 3,
+						color: 	'info',
+						title: 	'Email',
+						value: 	value.email
+					}];
+				}
 			},{
-				path: ':ip',
-				title: 'IP',
-				searchable: true,
-				sortable: true
+				path: ':content',
+				title: 'Заказ',
+				type: 'tag',
+				preprocessor: (value) => {
+					let total = value.reduce( (acc, itm) => {
+						acc.price+=itm.item.price;
+						acc.count+=itm.quantity;
+						return acc;
+					}, { price: 0, count: 0 });
+					total.price = (total.price/100).toFixed(2);
+					return [{
+						id: 1,
+						color: 'warning',
+						title: 'Цена',
+						value: `${total.price}`
+					}, {
+						id: 2,
+						color: 'info',
+						title: 'Позиций',
+						value: value.length
+					}, {
+						id: 3,
+						color: 	'info',
+						title: 	'Всего картин',
+						value: 	total.count
+					}];
+				}
 			}, {
 				path: ':status',
 				title: 'Статус',
 				searchable: true,
 				sortable: true
 			}, {
-				path: ':created',
+				path: ':createdAt',
 				title: 'Дата создания',
 				searchable: true,
 				sortable: true

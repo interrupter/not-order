@@ -1,6 +1,6 @@
 {
     "name": "not-order",
-    "version": "0.0.17",
+    "version": "0.0.18",
     "description": "not-* family order plugin",
     "main": "index.js",
     "repository": "git@github.com:interrupter/not-order.git",
