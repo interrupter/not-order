@@ -19,7 +19,7 @@ const
     },
   },
   App = require('not-node').Application,
-  notCommon = require('not-node').notCommon,
+  notCommon = require('not-node').Common,
   metaExtend = require('not-meta').extend,
   metaRoute = require('not-meta').Route,
   validator = require('validator'),
