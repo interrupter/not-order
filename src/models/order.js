@@ -1,66 +1,37 @@
-const
-	Schema = require('mongoose').Schema,
-	notError = require('not-error').notError,
-	notLocale = require('not-locale');
+const log = require('not-log')(module, 'Order Model');
+try {
+  const MODEL_NAME = 'Order';
+  const initFields = require('not-node').Fields.initFields;
 
-	exports.thisModelName = 'Order';
-	exports.keepNotExtended = false;
+  const FIELDS = [
+    ['sessionId', {}, 'session'],
+    ['user', {}, 'userId'],
+    'client',
+    ['content', {}, 'orderContent'],
+    ['status', {}, 'orderStatus'],
+    'ip',
+    'createdAt',
+    'updatedAt'
+  ];
 
-	exports.enrich = {
-		versioning: true,
-		increment: true,
-		validators: true
-	};
 
-	exports.thisSchema = {		
-		sessionId:{
-			type: String,
-			required: true,
-		},
-		user:{
-			type: 			Schema.Types.ObjectId,
-			ref: 				'User',
-			required: 	false
-		},
-		client:{
-			type: Schema.Types.Mixed,
-			searchable: true,
-			required: true
-		},
-		content:{
-			type: [Schema.Types.Mixed],
-			searchable: true,
-			required: true,
-		},
-		status: {
-			type: String,
-			required: true,
-			default: 'new'
-		},
-		ip: {
-			type: String,
-			required: false,
-			validate: [
-				{
-					validator: 'isIP',
-					message: 'ip_address_is_not_valid'
-				}
-			]
-		},
-		created: {
-			type: Date,
-			default: Date.now
-		},
-		updated: {
-			type: Date,
-			default: Date.now
-		},
-	};
+  exports.keepNotExtended = false;
+  exports.thisModelName = MODEL_NAME;
+  exports.thisSchema = initFields(FIELDS, 'model');
 
-	exports.thisStatics = {
+  exports.enrich = {
+    versioning: true,
+    increment: true,
+    validators: true
+  };
 
-	};
+  exports.thisStatics = {
 
-	exports.thisMethods = {
+  };
 
-	};
+  exports.thisMethods = {
+
+  };
+} catch (e) {
+  log.error(e);
+}

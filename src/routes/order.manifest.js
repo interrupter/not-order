@@ -1,40 +1,15 @@
+const initFromSchema = require('not-node').Fields.fromSchema;
+const modelSchema = require('../models/order').thisSchema;
+
+const FIELDS = initFromSchema(modelSchema, [
+	'_id',
+	['orderID', {}, 'ID']
+]);
+
 module.exports = {
 	model: 'order',
 	url: '/api/:modelName',
-	fields: {
-		tel: {
-			component: 'UITelephone',
-			label: 'Ваш номер телефона',
-			placeholder: '',
-			enabled: true,
-			value: '',
-			required: true
-		},
-		email: {
-			component: 'UIEmail',
-			label: 'Email',
-			placeholder: 'Ваш email адрес',
-			enabled: true,
-			required: true,
-			value: '',
-		},
-		name: {
-			component: 'UITextfield',
-			label: 'Имя',
-			placeholder: 'Как нам к вам обращаться?',
-			value: '',
-			enabled: true,
-			required: true
-		},
-		comment: {
-			component: 'UITextarea',
-			label: 'Дополнительно',
-			placeholder: 'Дополнительные сведения',
-			value: '',
-			enabled: true,
-			required: true
-		},
-	},
+	fields: FIELDS,
 	actions:{
 		add:{
       method: 	'PUT',
@@ -50,6 +25,53 @@ module.exports = {
 				{auth: true},
 				{admin: true}
 			]
+		},
+		get:{
+			method: 'get',
+			rules:[{
+				auth: true,
+				admin: true
+			}],
+			postFix: '/:record[_id]/:actionName',
+			title: 'form_title_view',
+			fields: [
+				'_id',
+				'orderID',
+				'sessionId',
+				'user',
+				'client',
+				'content',
+				'status',
+				'ip',
+				'createdAt',
+				'updatedAt',
+			]
+		},
+		getRaw:{
+			method: 'GET',
+			isArray: false,
+			postFix: '/:record[_id]/:actionName',
+			data: [],
+			auth: true,
+			admin: true
+		},
+		listAndCount:{
+			method: 	'get',
+			postFix: 	'/:actionName',
+			data: 		['record', 'filter', 'sorter', 'search', 'pager'],
+			rules:[ { admin: true } ],
+			fields: [
+				'_id',
+				'orderID',
+				'sessionId',
+				'user',
+				'client',
+				'content',
+				'status',
+				'ip',
+				'createdAt',
+				'updatedAt',
+			],
 		},
 	}
 };

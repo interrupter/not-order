@@ -1,7 +1,8 @@
 import CommonLocal from '../common/index.js';
 import Validators from '../common/validators.js';
+
 import {
-	notController,
+	ncCRUD,
 } from 'not-bulma';
 
 const LABELS = {
@@ -9,11 +10,11 @@ const LABELS = {
 	single: 'Заказ',
 };
 
-const MODEL = 'Order';
+const MODEL = 'order';
 
-class ncOrder extends notController{
+class ncOrder extends ncCRUD{
   constructor(app, params, schemes){
-    super(app, MODEL);
+    super(app, `${CommonLocal.MODULE.name}.${MODEL}`);
 		this.setModuleName(CommonLocal.MODULE.name);
 		this.setModelName(MODEL);
 		this.setOptions('names', LABELS);
@@ -21,7 +22,54 @@ class ncOrder extends notController{
 		this.setOptions('params', params);
 		this.setOptions('role', 'root');
 		this.setOptions('urlSchemes', schemes);
+		this.setOptions('list', {
+			fields: [{
+				path: ':orderID',
+				title: 'ID',
+				searchable: true,
+				sortable: true
+			}, {
+				path: ':sessionId',
+				title: 'Session',
+				searchable: true,
+				sortable: true
+			},{
+				path: ':ip',
+				title: 'IP',
+				searchable: true,
+				sortable: true
+			}, {
+				path: ':status',
+				title: 'Статус',
+				searchable: true,
+				sortable: true
+			}, {
+				path: ':created',
+				title: 'Дата создания',
+				searchable: true,
+				sortable: true
+			}, {
+				path: ':_id',
+				title: 'Действия',
+				type: 'button',
+				preprocessor: (value) => {
+					return [{
+						action: this.goDetails.bind(this, value),
+						title: 'Подробнее',
+						size: 'small'
+					}];
+				},
+			}]
+		});
+		this.start();
+		return this;
   }
+
+	createDefault() {
+		let newRecord = this.make[this.getModelName()]({});
+		return newRecord;
+	}
+
 }
 
 export default ncOrder;
