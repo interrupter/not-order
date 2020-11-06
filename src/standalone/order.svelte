@@ -14,6 +14,7 @@
 	export let manifest = false;
 	export let options = {};
 	export let validators = false;
+	export let inline = false;
 	export let order = {};
 	export let data = {};
 	export let url = '/api/order';
@@ -122,6 +123,24 @@
 
 </script>
 
+{#if inline }
+<div class="order-form-paper box">
+	<UIForm
+		bind:this={inpForm}
+		on:submit={putOrder}
+		on:reject={rejectOrder}
+		title={manifest.actions.add.title}
+		description={manifest.actions.add.description}
+		fields={manifest.actions.add.fields}
+		SUCCESS_TEXT={titleSuccess}
+		FAILURE_TEXT={titleFailure}
+		validators=validators
+		{options}
+		submit={{caption: 'Отправить', enabled: true, classes: 'order-form-submit'}}
+		cancel={{caption: 'Отмена', enabled: false, classes: 'order-form-cancel'}}
+		/>
+</div>
+{:else }
 <UIOverlay on:reject="{overlayClosed}" bind:this={overlay} show={true} {closeOnClick} {closeButton}>
 	<div class="order-form-paper box">
 		<UIForm
@@ -140,3 +159,4 @@
 			/>
 	</div>
 </UIOverlay>
+{/if}

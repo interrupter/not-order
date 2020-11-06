@@ -14,11 +14,12 @@ function launchOrderForm(options = {}){
       let comp = new OrderComponent({
         target: document.body,
         props: {
-          closeButton: false,
+          inline:       false,
+          closeButton:  false,
           closeOnClick: true,
-          manifest: OrderManifest,
-          validators: OrderValidators,
-          options: validatorOptions,
+          manifest:     OrderManifest,
+          validators:   OrderValidators,
+          options:      validatorOptions,
           ...options
         }
       });
@@ -30,4 +31,27 @@ function launchOrderForm(options = {}){
   });
 }
 
-export { OrderComponent,  launchOrderForm};
+function renderOrderForm(targetEl, options = {}){
+  return new Promise((resolve, reject)=>{
+    try{
+      let validatorOptions = {};
+      Form.actionFieldsInit(OrderManifest.actions.add.fields, validatorOptions, OrderValidators, options.data);
+      let comp = new OrderComponent({
+        target: targetEl,
+        props: {
+          inline:       true,
+          manifest:     OrderManifest,
+          validators:   OrderValidators,
+          options:      validatorOptions,
+          ...options
+        }
+      });
+      comp.$on('resolve', ev => resolve(ev.detail));
+      comp.$on('reject', reject);
+    }catch(e){
+      reject(e);
+    }
+  });
+}
+
+export { OrderComponent,  launchOrderForm, renderOrderForm};
