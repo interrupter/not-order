@@ -108,7 +108,7 @@ class ncOrder extends ncCRUD{
 				path: ':_id',
 				title: 'Действия',
 				type: 'button',
-				preprocessor: (value) => {
+				preprocessor: (value, row) => {
 					return [
 						{
 							action: this.goDetails.bind(this, value),
@@ -118,7 +118,7 @@ class ncOrder extends ncCRUD{
 						...(app.getOptions('modules.order.list.row.actions', []).map( (itm) => {
 							let btn = {...itm};
 							delete btn.action;
-							btn.action = (e) => itm.action(e, value);
+							btn.action = (e) => itm.action(e, value, row);
 							return btn;
 						})),
 				];
