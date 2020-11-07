@@ -23,6 +23,7 @@ class ncOrder extends ncCRUD{
 		this.setOptions('role', 'root');
 		this.setOptions('urlSchemes', schemes);
 		this.setOptions('list', {
+			actions: app.getOptions('modules.order.list.actions', []),
 			interface: {
         factory: this.getModel(),
         combined: true,
