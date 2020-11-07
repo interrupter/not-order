@@ -109,12 +109,15 @@ class ncOrder extends ncCRUD{
 				title: 'Действия',
 				type: 'button',
 				preprocessor: (value) => {
-					return [{
-						action: this.goDetails.bind(this, value),
-						title: 'Подробнее',
-						size: 'small'
-					},
-					...(app.getOptions('modules.order.list.row.actions', [])),
+					return [
+						{
+							action: this.goDetails.bind(this, value),
+							title: 'Подробнее',
+							size: 'small'
+						},
+						...(app.getOptions('modules.order.list.row.actions', []).map( (act) => {
+							return (e) => act(e, value);
+						})),
 				];
 				},
 			}]
