@@ -15,7 +15,7 @@ const
       get: ['userId']
     },
     RESPONSE: {
-      full: ['get', 'getRaw', 'create', 'update']
+      full: ['get', 'getRaw', 'getRawByID', 'create', 'update']
     },
   },
   App = require('not-node').Application,
@@ -80,6 +80,35 @@ exports.add = exports._add = (req, res, next) => {
     });
   }
 }
+
+exports._getRawByID = (req, res)=>{
+  try {
+    let orderID = req.params.orderID;
+    if(isNaN(parseInt(orderID))){
+      throw new notError('Order ID is not a Number');
+    }
+    App.getModel('Order').getOneByID(orderID)
+      .then((row)=>{
+        return res.status(200).json({
+          result: row,
+          status: 'ok'
+        });
+      })
+      .catch((e)=>{
+        App.report(e);
+        return res.status(505).json({
+          message: e.message,
+          status: 'error'
+        });
+      });
+  } catch (e) {
+    App.report(e);
+    return res.status(505).json({
+      message: e.message,
+      status: 'error'
+    });
+  }
+};
 
 
 //we have only Admin level routes so, all goes with '_' prefix standart for him

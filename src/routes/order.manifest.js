@@ -55,6 +55,14 @@ module.exports = {
 			auth: true,
 			admin: true
 		},
+		getRawByID:{
+			method: 'GET',
+			isArray: false,
+			postFix: '/:record[orderID]/:actionName',
+			data: [],
+			auth: true,
+			admin: true
+		},
 		listAndCount:{
 			method: 	'get',
 			postFix: 	'/:actionName',
