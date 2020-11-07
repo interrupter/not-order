@@ -113,7 +113,9 @@ class ncOrder extends ncCRUD{
 						action: this.goDetails.bind(this, value),
 						title: 'Подробнее',
 						size: 'small'
-					}];
+					},
+					...(app.getOptions('modules.order.list.row.actions', [])),
+				];
 				},
 			}]
 		});
