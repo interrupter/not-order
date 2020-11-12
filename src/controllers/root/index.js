@@ -1,5 +1,5 @@
-import ncOrder from './ncOrder.js';
-import ncOrderOptions from './ncOrderOptions.js';
+import ncOrder from '../common/ncOrder.js';
+import ncOrderOptions from '../common/ncOrderOptions.js';
 
 let manifest = {
 	router: {

@@ -28,10 +28,7 @@ module.exports = {
 		},
 		get:{
 			method: 'get',
-			rules:[{
-				auth: true,
-				admin: true
-			}],
+			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
 			postFix: '/:record[_id]/:actionName',
 			title: 'form_title_view',
 			fields: [
@@ -52,22 +49,20 @@ module.exports = {
 			isArray: false,
 			postFix: '/:record[_id]/:actionName',
 			data: [],
-			auth: true,
-			admin: true
+			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
 		},
 		getRawByID:{
 			method: 'GET',
 			isArray: false,
 			postFix: '/:record[orderID]/:actionName',
 			data: [],
-			auth: true,
-			admin: true
+			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
 		},
 		listAndCount:{
 			method: 	'get',
 			postFix: 	'/:actionName',
 			data: 		['record', 'filter', 'sorter', 'search', 'pager'],
-			rules:[ { admin: true } ],
+			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
 			fields: [
 				'_id',
 				'orderID',
