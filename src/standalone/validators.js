@@ -1,10 +1,10 @@
-import {Form} from 'not-bulma';
+import validator from 'validator';
 
 const Validators = {
   fields: {
     name(value) {
       let errors = [];
-      if (!Form.validator.isLength(value, {
+      if (!validator.isLength(value, {
           min: 2,
           max: 100
         })) {
@@ -14,21 +14,21 @@ const Validators = {
     },
     tel(value) {
       let errors = [];
-      if (!Form.validator.isLength(value, {min: 11, max: 20})) {
-        errors.push('Необходимо ввести полный номер телефона из 11 цифр');
+      if (!validator.isMobilePhone(value.replace(/\D/g, ''))) {
+        errors.push('Необходимо ввести номер мобильного телефона');
       }
       return errors;
     },
     comment(value) {
       let errors = [];
-      if (!Form.validator.isLength(value, {min: 0, max: 1000})) {
+      if (!validator.isLength(value, {min: 0, max: 1000})) {
         errors.push('Текст может содержать до 1000 символов.');
       }
       return errors;
     },
     email(value) {
       let errors = [];
-      if (!Form.validator.isEmail(value)) {
+      if (!validator.isEmail(value)) {
         errors.push('Необходимо ввести email адрес');
       }
       return errors;

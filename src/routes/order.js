@@ -34,44 +34,38 @@ function getIP(req) {
     req.connection.socket.remoteAddress;
 };
 
-exports.add = exports._add = (req, res, next) => {
+exports.add = exports._add = async (req, res, next) => {
   try {
     let orderData = {
       ip: getIP(req),
-      sessionId: req.session.id,
-      client: req.body.client,
-      content: req.body.order,
+      sessionId:  req.session.id,
+      client:     req.body.client,
+      content:    req.body.order,
     };
-    const Stat = App.getModel('Statistic');
     if (req.user) {
       orderData.user = req.user.id
     }
-    (App.getModel('Order')).add(orderData)
-      .then(async (result) => {
-        App.logger.log(`new order ${result.orderID}`);
-        if (Stat){
-          await Stat.add(result._id,
-            {
-              id:			  result.orderID,
-              action: 	'add',
-              model: 		notCommon.firstLetterToLower(MODEL_NAME),
-              user: 		orderData.user,
-              session: 	orderData.sessionId,
-              ip:			  orderData.ip
-            });
-        }
-        return res.status(200).json({
-          status: 'ok',
-          orderID: result.orderID
+    if(App.getEnv('event:order:beforeAdd')){
+      await App.getEnv('event:order:beforeAdd')(orderData);
+    }
+    let result = (App.getModel('Order')).add(orderData);
+    App.logger.log(`new order ${result.orderID}`);
+    const Stat = App.getModel('Statistic');
+    if (Stat){
+      await Stat.add(result._id,
+        {
+          id:			  result.orderID,
+          action: 	'add',
+          model: 		notCommon.firstLetterToLower(MODEL_NAME),
+          user: 		orderData.user,
+          session: 	orderData.sessionId,
+          ip:			  orderData.ip
         });
-      })
-      .catch((e) => {
-        App.report(e);
-        return res.status(505).json({
-          message: e.message,
-          status: 'error'
-        });
-      });
+    }
+    return res.status(200).json({
+      status: 'ok',
+      orderID: result.orderID
+    });
   } catch (e) {
     App.report(e);
     return res.status(505).json({
