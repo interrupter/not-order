@@ -1,4 +1,5 @@
 export default class Common{
+	static PACKAGE = 'not-order';
 	static MODULE = {
 		name: 'Orders',
 		label: 'Управление заказами'

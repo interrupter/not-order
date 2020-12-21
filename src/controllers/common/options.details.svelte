@@ -3,7 +3,10 @@
   import { createEventDispatcher } from 'svelte';
 	let dispatch = createEventDispatcher();
 
-  export let options = {};
+  export let options = {
+    redirect_of_requests_to_other_server: false,
+    redirect_of_requests_to_other_server_url: ''
+  };
 
   export let title = '';
   export let subtitle = '';
@@ -27,14 +30,14 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <input type="checkbox" class="switch {switch_styling}" id="edit-order-options-redirect_of_requests_to_other_server" bind:checked={options.redirect_of_requests_to_other_server.value} name="redirect_of_requests_to_other_server" {readonly} {disabled} />
+        <input type="checkbox" class="switch {switch_styling}" id="edit-order-options-redirect_of_requests_to_other_server" bind:checked={options.redirect_of_requests_to_other_server} name="redirect_of_requests_to_other_server" {readonly} {disabled} />
         <label class="label" for="edit-order-options-redirect_of_requests_to_other_server"></label>
       </div>
     </div>
     {#if options.redirect_of_requests_to_other_server.value }
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" placeholder="url куда предеавать данные" bind:value={options.redirect_of_requests_to_other_server_url.value}  {readonly} {disabled} />
+        <input class="input is-success" type="text" placeholder="url куда предеавать данные" bind:value={options.redirect_of_requests_to_other_server_url}  {readonly} {disabled} />
       </p>
     </div>
     {/if}

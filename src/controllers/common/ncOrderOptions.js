@@ -8,7 +8,7 @@ import {
 } from 'not-bulma';
 
 
-import UIOrderOptions from '../common/options.details.svelte';
+import UIOrderOptions from '../options.details.svelte';
 
 const LABELS = {
 	plural: 'Настройки',
@@ -94,8 +94,8 @@ class ncOrderOptions extends notController {
 	async route() {
 		try {
 			this.getModel()({
-					moduleName: CommonLocal.MODULE.name.toLowerCase()
-				}).$listAllForModule()
+					moduleName: CommonLocal.PACKAGE.toLowerCase()
+				}).$getForModule()
 				.then((res) => {
 					if (res.status === 'ok') {
 						this.ui.details = new UIOrderOptions({
@@ -128,7 +128,7 @@ class ncOrderOptions extends notController {
 		try {
 			if(this.ui.message){	this.ui.message.$destroy();	}
 			this.getModel()({
-					moduleName: CommonLocal.MODULE.name.toLowerCase(),
+					moduleName: CommonLocal.PACKAGE.toLowerCase(),
 					options
 				}).$updateForModule()
 				.then((res) => {
