@@ -8,7 +8,7 @@ import {
 } from 'not-bulma';
 
 
-import UIOrderOptions from '../options.details.svelte';
+import UIOrderOptions from './options.details.svelte';
 
 const LABELS = {
 	plural: 'Настройки',
