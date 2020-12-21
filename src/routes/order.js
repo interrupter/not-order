@@ -46,7 +46,7 @@ exports.add = exports._add = async (req, res, next) => {
       orderData.user = req.user.id
     }
     if(App.getEnv('event:order:add:before')){
-      await App.getEnv('event:order:add:before')(orderData);
+      await App.getEnv('event:order:add:before')(orderData, req);
     }
     let result = (App.getModel('Order')).add(orderData);
     App.logger.log(`new order ${result.orderID}`);
