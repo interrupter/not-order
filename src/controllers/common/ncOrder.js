@@ -103,7 +103,10 @@ class ncOrder extends ncCRUD{
 				path: ':createdAt',
 				title: 'Дата создания',
 				searchable: true,
-				sortable: true
+				sortable: true,
+				preprocessor: (createdAt)=>{
+					return (new Date(createdAt)).toLocaleDateString();
+				}
 			}, {
 				path: ':_id',
 				title: 'Действия',
