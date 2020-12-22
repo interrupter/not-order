@@ -85,12 +85,12 @@ class ncOrder extends ncCRUD{
 					}, {
 						id: 2,
 						color: 'info',
-						title: 'Позиций',
+						title: 'Товаров',
 						value: value.length
 					}, {
 						id: 3,
 						color: 	'info',
-						title: 	'Всего картин',
+						title: 	'Всего',
 						value: 	total.count
 					}];
 				}
@@ -105,7 +105,7 @@ class ncOrder extends ncCRUD{
 				searchable: true,
 				sortable: true,
 				preprocessor: (createdAt)=>{
-					return (new Date(createdAt)).toLocaleDateString();
+					return (new Date(createdAt)).toLocaleString();
 				}
 			}, {
 				path: ':_id',
