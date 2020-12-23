@@ -3,7 +3,11 @@ const modelSchema = require('../models/order').thisSchema;
 
 const FIELDS = initFromSchema(modelSchema, [
 	'_id',
-	['orderID', {}, 'ID']
+	['orderID', 	{}, 'ID'],
+	['user', 			{}, 'userId'],
+	['content', 	{}, 'orderContent'],
+	['status', 	{}, 'orderStatus'],
+	['sessionId',	{},'session']
 ]);
 
 module.exports = {
