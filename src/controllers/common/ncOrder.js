@@ -1,8 +1,12 @@
+import UIOrderContent from '../common/ui.order.content.svelte';
+import UIOrderClient from '../common/ui.order.client.svelte';
+
 import CommonLocal from '../common/index.js';
 import Validators from '../common/validators.js';
 
 import {
 	ncCRUD,
+	Form
 } from 'not-bulma';
 
 const LABELS = {
@@ -15,6 +19,8 @@ const MODEL = 'order';
 class ncOrder extends ncCRUD{
   constructor(app, params, schemes){
     super(app, `${CommonLocal.MODULE.name}.${MODEL}`);
+		Form.addComponent('UIOrderContent', UIOrderContent);
+		Form.addComponent('UIOrderClient', UIOrderClient);
 		this.setModuleName(CommonLocal.MODULE.name);
 		this.setModelName(MODEL);
 		this.setOptions('names', LABELS);

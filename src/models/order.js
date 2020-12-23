@@ -5,15 +5,14 @@ try {
 
   const FIELDS = [
     ['sessionId', {}, 'session'],
-    ['user', {}, 'userId'],
+    ['user',      {}, 'userId'],
     'client',
-    ['content', {}, 'orderContent'],
-    ['status', {}, 'orderStatus'],
+    ['content',   {}, 'orderContent'],
+    ['status',    {}, 'orderStatus'],
     'ip',
     'createdAt',
     'updatedAt'
   ];
-
 
   exports.keepNotExtended = false;
   exports.thisModelName = MODEL_NAME;
@@ -25,13 +24,10 @@ try {
     validators: true
   };
 
-  exports.thisStatics = {
+  exports.thisStatics = {};
 
-  };
+  exports.thisMethods = {};
 
-  exports.thisMethods = {
-
-  };
 } catch (e) {
   log.error(e);
 }

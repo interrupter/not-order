@@ -34,7 +34,8 @@ module.exports = {
 			method: 'get',
 			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
 			postFix: '/:record[_id]/:actionName',
-			title: 'form_title_view',
+			title: 'Заказ',
+			description: 'Сводка данных',
 			fields: [
 				'_id',
 				'orderID',
