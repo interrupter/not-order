@@ -48,7 +48,7 @@ exports.add = exports._add = async (req, res, next) => {
     if(App.getEnv('event:order:add:before')){
       await App.getEnv('event:order:add:before')(orderData, req);
     }
-    let result = (App.getModel('Order')).add(orderData);
+    let result = await (App.getModel('Order')).add(orderData);
     App.logger.log(`new order ${result.orderID}`);
     const Stat = App.getModel('Statistic');
     if (Stat){
@@ -67,6 +67,7 @@ exports.add = exports._add = async (req, res, next) => {
       orderID: result.orderID
     });
   } catch (e) {
+    App.logger.error(e);
     App.report(e);
     return res.status(505).json({
       message: e.message,
