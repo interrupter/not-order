@@ -22,10 +22,7 @@ const
   notCommon = require('not-node').Common,
   metaExtend = require('not-meta').extend,
   metaRoute = require('not-meta').Route,
-  validator = require('validator'),
-  notLocale = require('not-locale'),
-  notError = require('not-error').notError,
-  config = require('not-config').readerForModule('order');
+  notError = require('not-error').notError;
 
 function getIP(req) {
   return req.headers['x-forwarded-for'] ||

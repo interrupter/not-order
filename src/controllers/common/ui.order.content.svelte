@@ -7,7 +7,7 @@
   } from 'svelte';
 
   export let value = [];
-  export let readonly = true;
+//  export let readonly = true;
 
   onMount(() => {
     value.forEach((item) => {
@@ -57,7 +57,7 @@
     {#if item.image }
     <div class="control">
       <figure class="image">
-        <img src="{item.image.path.small.cloud.Location}">
+        <img alt="{item.item.title}" src="{item.image.path.small.cloud.Location}">
       </figure>
     </div>
     {/if}
