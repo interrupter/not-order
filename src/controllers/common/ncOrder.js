@@ -17,8 +17,8 @@ const LABELS = {
 const MODEL = 'order';
 
 class ncOrder extends ncCRUD{
-  constructor(app, params, schemes){
-    super(app, `${CommonLocal.MODULE.name}.${MODEL}`);
+	constructor(app, params, schemes){
+		super(app, `${CommonLocal.MODULE.name}.${MODEL}`);
 		Form.addComponent('UIOrderContent', UIOrderContent);
 		Form.addComponent('UIOrderClient', UIOrderClient);
 		this.setModuleName(CommonLocal.MODULE.name);
@@ -31,17 +31,17 @@ class ncOrder extends ncCRUD{
 		this.setOptions('list', {
 			actions: app.getOptions('modules.order.list.actions', []),
 			interface: {
-        factory: this.getModel(),
-        combined: true,
-        combinedAction: 'listAndCount'
-      },
-      pager: {
-        size: 100,
-        page: 0
-      },
-      showSelect: true,
-      showSearch: true,
-      idField: '_id',
+				factory: this.getModel(),
+				combined: true,
+				combinedAction: 'listAndCount'
+			},
+			pager: {
+				size: 100,
+				page: 0
+			},
+			showSelect: true,
+			showSearch: true,
+			idField: '_id',
 			sorter:{
 				'orderID': -1
 			},
@@ -130,13 +130,13 @@ class ncOrder extends ncCRUD{
 							btn.action = (e) => itm.action(e, value, row);
 							return btn;
 						})),
-				];
+					];
 				},
 			}]
 		});
 		this.start();
 		return this;
-  }
+	}
 
 	createDefault() {
 		let newRecord = this.make[this.getModelName()]({});

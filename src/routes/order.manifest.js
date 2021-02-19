@@ -27,12 +27,12 @@ module.exports = {
 			rules:[
 				{auth: false},
 				{auth: true},
-				{admin: true}
+				{root: true}
 			]
 		},
 		get:{
 			method: 'get',
-			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
+			rules: [ { root: true }, { auth: true, role: 'manager' },  ],
 			postFix: '/:record[_id]/:actionName',
 			title: 'Заказ',
 			description: 'Сводка данных',
@@ -54,20 +54,20 @@ module.exports = {
 			isArray: false,
 			postFix: '/:record[_id]/:actionName',
 			data: [],
-			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
+			rules: [ { root: true }, { auth: true, role: 'manager' },  ],
 		},
 		getRawByID:{
 			method: 'GET',
 			isArray: false,
 			postFix: '/:record[orderID]/:actionName',
 			data: [],
-			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
+			rules: [ { root: true }, { auth: true, role: 'manager' },  ],
 		},
 		listAndCount:{
 			method: 	'get',
 			postFix: 	'/:actionName',
 			data: 		['record', 'filter', 'sorter', 'search', 'pager'],
-			rules: [ { admin: true }, { user: true, role: 'manager' },  ],
+			rules: [ { root: true }, { auth: true, role: 'manager' },  ],
 			fields: [
 				'_id',
 				'orderID',

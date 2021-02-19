@@ -22,15 +22,15 @@ let manifest = {
 			}],
 			items:		[{
 				priority: 10,
-        section: 'order',
+				section: 'order',
 				title: 	'Список',
 				url: 		'/orders/order'
 			},{
 				priority: 1,
-        section: 'order',
-        title: 	'Настройки',
-        url: 		'/orders/options'
-      }]
+				section: 'order',
+				title: 	'Настройки',
+				url: 		'/orders/options'
+			}]
 		}
 	}
 };

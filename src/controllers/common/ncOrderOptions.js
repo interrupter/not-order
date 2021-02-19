@@ -94,8 +94,8 @@ class ncOrderOptions extends notController {
 	async route() {
 		try {
 			this.getModel()({
-					moduleName: CommonLocal.PACKAGE.toLowerCase()
-				}).$getForModule()
+				moduleName: CommonLocal.PACKAGE.toLowerCase()
+			}).$getForModule()
 				.then((res) => {
 					if (res.status === 'ok') {
 						this.ui.details = new UIOrderOptions({
@@ -128,9 +128,9 @@ class ncOrderOptions extends notController {
 		try {
 			if(this.ui.message){	this.ui.message.$destroy();	}
 			this.getModel()({
-					moduleName: CommonLocal.PACKAGE.toLowerCase(),
-					options
-				}).$updateForModule()
+				moduleName: CommonLocal.PACKAGE.toLowerCase(),
+				options
+			}).$updateForModule()
 				.then((res) => {
 					if (res.status === 'ok') {
 						this.ui.message = new UISuccess({

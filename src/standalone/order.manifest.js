@@ -50,7 +50,7 @@ const manifest = {
 			rules:[
 				{auth: false},
 				{auth: true},
-				{admin: true}
+				{root: true}
 			]
 		},
 	}
