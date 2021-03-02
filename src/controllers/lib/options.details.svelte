@@ -1,11 +1,16 @@
 <script>
   import 'bulma-switch';
-  import { createEventDispatcher } from 'svelte';
+  import {UIError} from 'not-bulma';
+  import { createEventDispatcher, onMount } from 'svelte';
 	let dispatch = createEventDispatcher();
 
-  export let options = {
+  const DEFAULT_OPTIONS = {
     redirect_of_requests_to_other_server: false,
     redirect_of_requests_to_other_server_url: ''
+  };
+
+  export let options = {
+    ...DEFAULT_OPTIONS
   };
 
   export let title = '';
@@ -15,6 +20,20 @@
   export let readonly = false;
   export let disabled = false;
 
+  onMount(()=>{
+    if(
+      typeof options === 'undefined' ||
+      options === null ||
+      !options ||
+      JSON.stringify(options)==='{}' ||
+      Object.keys(options).length === 0
+      ){
+      options = {
+        ...DEFAULT_OPTIONS
+      };
+    }
+  });
+
   function saveToServer(){
     dispatch('save', options);
   }
@@ -23,6 +42,7 @@
 
 <h2 class="title is-2">{title}</h2>
 <h3 class="subtitle is-3">{subtitle}</h3>
+{#if options }
 <div class="field is-horizontal">
   <div class="field-label">
     <label class="label" for="edit-order-options-redirect_of_requests_to_other_server">Перенаправление информации о новых заказах на другой сервер</label>
@@ -34,7 +54,7 @@
         <label class="label" for="edit-order-options-redirect_of_requests_to_other_server"></label>
       </div>
     </div>
-    {#if options.redirect_of_requests_to_other_server.value }
+    {#if options.redirect_of_requests_to_other_server }
     <div class="field">
       <p class="control is-expanded">
         <input class="input is-success" type="text" placeholder="url куда предеавать данные" bind:value={options.redirect_of_requests_to_other_server_url}  {readonly} {disabled} />
@@ -56,3 +76,6 @@
     </div>
   </div>
 </div>
+{:else}
+<UIError title="Настройки отсутствуют" message="Данные или отсутствуют, или повреждены." />
+{/if}

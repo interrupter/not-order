@@ -1,8 +1,8 @@
-import UIOrderContent from '../common/ui.order.content.svelte';
-import UIOrderClient from '../common/ui.order.client.svelte';
+import UIOrderContent from './ui.order.content.svelte';
+import UIOrderClient from './ui.order.client.svelte';
 
-import CommonLocal from '../common/index.js';
-import Validators from '../common/validators.js';
+import CommonLocal from './index.js';
+import Validators from './validators.js';
 
 import {
 	ncCRUD,

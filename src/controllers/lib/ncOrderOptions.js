@@ -1,5 +1,5 @@
-import CommonLocal from '../common/index.js';
-import Validators from '../common/validators.js';
+import CommonLocal from './index.js';
+import Validators from './validators.js';
 import {
 	notController,
 	Breadcrumbs,
@@ -98,13 +98,14 @@ class ncOrderOptions extends notController {
 			}).$getForModule()
 				.then((res) => {
 					if (res.status === 'ok') {
+						let props = {
+							title: 'Настройки',
+							subtitle: 'настройки для данного модуля',
+							options: res.result
+						};
 						this.ui.details = new UIOrderOptions({
 							target: this.els.main,
-							props: {
-								title: 'Настройки',
-								subtitle: 'настройки для данного модуля',
-								options: res.result
-							}
+							props
 						});
 						this.ui.details.$on('save', e => this.saveToServer(e.detail));
 					} else {
