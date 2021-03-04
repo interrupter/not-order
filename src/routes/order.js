@@ -60,7 +60,7 @@ exports.add = exports._add = async (req, res, next) => {
         });
     }
     //inform
-    App.on('order:add:after')(result, req);
+    App.emit('order:add:after')(result, req);
     return res.status(200).json({
       status: 'ok',
       orderID: result.orderID
