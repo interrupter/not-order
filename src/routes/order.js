@@ -18,7 +18,7 @@ const
       full: ['get', 'getRaw', 'getRawByID', 'create', 'update']
     },
   },
-  App = require('not-node').Application,
+  notNode = require('not-node'),
   notCommon = require('not-node').Common,
   metaExtend = require('not-meta').extend,
   metaRoute = require('not-meta').Route,
@@ -32,6 +32,7 @@ function getIP(req) {
 };
 
 exports.add = exports._add = async (req, res, next) => {
+  const App = notNode.Application;
   try {
     let orderData = {
       ip: getIP(req),
@@ -76,6 +77,7 @@ exports.add = exports._add = async (req, res, next) => {
 }
 
 exports._getRawByID = (req, res)=>{
+  const App = notNode.Application;
   try {
     let orderID = req.params.orderID;
     if(isNaN(parseInt(orderID))){
