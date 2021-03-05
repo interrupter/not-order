@@ -6,7 +6,9 @@
 
   const DEFAULT_OPTIONS = {
     redirect_of_requests_to_other_server: false,
-    redirect_of_requests_to_other_server_url: ''
+    redirect_of_requests_to_other_server_url: '',
+    inform_manager:    true,
+    inform_client:     true
   };
 
   export let options = {
@@ -61,6 +63,34 @@
       </p>
     </div>
     {/if}
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <label class="label" for="edit-order-options-inform_manager">Информировать менеджера о заказе</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <input type="checkbox" class="switch {switch_styling}" id="edit-order-options-inform_manager" bind:checked={options.inform_manager} name="inform_manager" {readonly} {disabled} />
+        <label class="label" for="edit-order-options-inform_manager"></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <label class="label" for="edit-order-options-inform_client">Информировать клиента о заказе</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <input type="checkbox" class="switch {switch_styling}" id="edit-order-options-inform_client" bind:checked={options.inform_client} name="inform_client" {readonly} {disabled} />
+        <label class="label" for="edit-order-options-inform_client"></label>
+      </div>
+    </div>
   </div>
 </div>
 
