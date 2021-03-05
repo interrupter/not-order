@@ -8,6 +8,7 @@
     redirect_of_requests_to_other_server: false,
     redirect_of_requests_to_other_server_url: '',
     inform_manager:    true,
+    inform_manager_via_email: '',
     inform_client:     true
   };
 
@@ -77,6 +78,16 @@
         <label class="label" for="edit-order-options-inform_manager"></label>
       </div>
     </div>
+    {#if options.inform_manager }
+    <div class="field">
+      <p class="control is-expanded">
+        <input class="input is-success" type="email" placeholder="email" bind:value={options.inform_manager_via_email}  {readonly} {disabled} />
+      </p>
+      <p class="help">
+        Email менеджера
+      </p>
+    </div>
+    {/if}
   </div>
 </div>
 
