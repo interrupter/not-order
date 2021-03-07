@@ -7,6 +7,7 @@
   const DEFAULT_OPTIONS = {
     redirect_of_requests_to_other_server: false,
     redirect_of_requests_to_other_server_url: '',
+    redirect_of_requests_to_other_server_max_body_length: 20000,
     inform_manager:    true,
     inform_manager_via_email: '',
     inform_client:     true
@@ -62,6 +63,13 @@
       <p class="control is-expanded">
         <input class="input is-success" type="text" placeholder="url куда предеавать данные" bind:value={options.redirect_of_requests_to_other_server_url}  {readonly} {disabled} />
       </p>
+      <p class="help">полный URL</p>
+    </div>
+    <div class="field">
+      <p class="control is-expanded">
+        <input class="input is-success" type="number" placeholder="максимальный размер запроса в байтах" bind:value={options.redirect_of_requests_to_other_server_max_body_length}  {readonly} {disabled} />
+      </p>
+      <p class="help">максимальный размер запроса в байтах</p>
     </div>
     {/if}
   </div>

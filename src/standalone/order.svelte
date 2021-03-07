@@ -32,7 +32,8 @@
 	export let redirectSuccess = false;
 
 	function overlayClosed() {
-		rejectOrder();
+		overlay.$destroy();
+		dispatch('closed');
 	}
 
 	onMount(() => {
@@ -56,13 +57,17 @@
 
 	async function putData(reqUrl, client) {
 		let opts = getStandartRequestOptions();
-		const response = await fetch(reqUrl, Object.assign(opts, {
-			method: 'PUT',
-			body: JSON.stringify({
-				client,
-				order
-			}),
-		}));
+		const response = await fetch(
+			reqUrl,
+			{
+				...opts,
+				method: 'PUT',
+				body: JSON.stringify({
+					client,
+					order
+				}),
+			}
+			);
 		return await response.json();
 	}
 
