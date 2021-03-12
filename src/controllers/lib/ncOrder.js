@@ -143,6 +143,10 @@ class ncOrder extends ncCRUD{
 		return newRecord;
 	}
 
+	getItemTitle(itm){
+		return `#${itm.orderID}`;
+	}
+
 }
 
 export default ncOrder;
