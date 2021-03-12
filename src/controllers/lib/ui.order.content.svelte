@@ -37,10 +37,12 @@
   <div class="box">
     {#each value as item}
     <div class="control">
+      {#if item.item.title }
       <div class="mx-1 tags has-addons">
         <span class="tag">Название</span>
         <span class="tag is-info">{item.item.title}</span>
       </div>
+      {/if}
       <div class="mx-1 tags has-addons">
         <span class="tag">Количество</span>
         <span class="tag is-info">{item.quantity}</span>

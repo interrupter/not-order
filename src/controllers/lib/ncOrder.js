@@ -41,6 +41,7 @@ class ncOrder extends ncCRUD{
 			},
 			showSelect: true,
 			showSearch: true,
+			getItemId: v => v.orderID,
 			idField: '_id',
 			sorter:{
 				'orderID': -1
@@ -100,12 +101,17 @@ class ncOrder extends ncCRUD{
 						value: 	total.count
 					}];
 				}
-			}, ...app.getOptions('modules.order.list.customFields', []), {
+			},
+			...app.getOptions('modules.order.list.customFields', []),
+/*
+			{
 				path: ':status',
 				title: 'Статус',
 				searchable: true,
 				sortable: true
-			}, {
+			},
+			*/
+			{
 				path: ':createdAt',
 				title: 'Дата создания',
 				searchable: true,
