@@ -39,7 +39,7 @@ class ncOrder extends ncCRUD{
 				size: 100,
 				page: 0
 			},
-			showSelect: true,
+			showSelect: false,
 			showSearch: true,
 			getItemId: v => v.orderID,
 			idField: '_id',
