@@ -1,6 +1,6 @@
 {
     "name": "not-order",
-    "version": "0.0.57",
+    "version": "0.0.58",
     "description": "not-* family order plugin",
     "main": "index.js",
     "repository": "git@github.com:interrupter/not-order.git",
@@ -40,7 +40,6 @@
         "mocha": "^8.3.2",
         "mongodb-memory-server": "^6.9.6",
         "node-sass": "^5.0.0",
-        "not-order": "^0.0.56",
         "not-overlay": "0.0.7",
         "nyc": "^15.1.0",
         "request": "^2.88.2",
