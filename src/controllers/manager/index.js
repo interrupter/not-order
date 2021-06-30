@@ -17,17 +17,17 @@ let manifest = {
 	menu: {
 		side:{
 			sections: [{
-				id: 		'order',
+				id: 		'orders',
 				title: 	'Заказы'
 			}],
 			items:		[{
 				priority: 10,
-				section: 'order',
+				section: 'orders',
 				title: 	'Список',
 				url: 		'/orders/order'
 			},{
 				priority: 1,
-				section: 'order',
+				section: 'orders',
 				title: 	'Настройки',
 				url: 		'/orders/options'
 			}]

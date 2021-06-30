@@ -23,13 +23,13 @@ let manifest = {
 			items:		[{
 				id: 'orders.list',
 				priority: 10,
-				section: 'order',
+				section: 'orders',
 				title: 	'Список',
 				url: 		'/orders/order'
 			},{
 				id: 'orders.options',
 				priority: 1,
-				section: 'order',
+				section: 'orders',
 				title: 	'Настройки',
 				url: 		'/orders/options'
 			}]
