@@ -1,57 +1,67 @@
-import './order.scss';
-import OrderComponent from './order.svelte';
-import OrderManifest from './order.manifest.js';
-import OrderValidators from './validators.js';
-import {Form, LIB} from 'not-bulma';
+import "./order.scss";
+import OrderComponent from "./order.svelte";
+import OrderManifest from "./order.manifest.js";
+import OrderValidators from "./validators.js";
+import { Form, LIB } from "not-bulma";
 
 LIB.FIELDS.import(OrderManifest.fields);
 
-function launchOrderForm(options = {}){
-  return new Promise((resolve, reject)=>{
-    try{
-      let validatorOptions = {};
-      Form.actionFieldsInit(OrderManifest.actions.add.fields, validatorOptions, OrderValidators, options.data);
-      let comp = new OrderComponent({
-        target: document.body,
-        props: {
-          inline:       false,
-          closeButton:  false,
-          closeOnClick: true,
-          manifest:     OrderManifest,
-          validators:   OrderValidators,
-          options:      validatorOptions,
-          ...options
+function launchOrderForm(options = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            let validatorOptions = {};
+            Form.actionFieldsInit(
+                OrderManifest.actions.add.fields,
+                validatorOptions,
+                OrderValidators,
+                options.data
+            );
+            let comp = new OrderComponent({
+                target: document.body,
+                props: {
+                    inline: false,
+                    closeButton: false,
+                    closeOnClick: true,
+                    manifest: OrderManifest,
+                    validators: OrderValidators,
+                    options: validatorOptions,
+                    ...options,
+                },
+            });
+            comp.$on("resolve", (ev) => resolve(ev.detail));
+            comp.$on("reject", reject);
+        } catch (e) {
+            reject(e);
         }
-      });
-      comp.$on('resolve', ev => resolve(ev.detail));
-      comp.$on('reject', reject);
-    }catch(e){
-      reject(e);
-    }
-  });
+    });
 }
 
-function renderOrderForm(targetEl, options = {}){
-  return new Promise((resolve, reject)=>{
-    try{
-      let validatorOptions = {};
-      Form.actionFieldsInit(OrderManifest.actions.add.fields, validatorOptions, OrderValidators, options.data);
-      let comp = new OrderComponent({
-        target: targetEl,
-        props: {
-          inline:       true,
-          manifest:     OrderManifest,
-          validators:   OrderValidators,
-          options:      validatorOptions,
-          ...options
+function renderOrderForm(targetEl, options = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            let validatorOptions = {};
+            Form.actionFieldsInit(
+                OrderManifest.actions.add.fields,
+                validatorOptions,
+                OrderValidators,
+                options.data
+            );
+            let comp = new OrderComponent({
+                target: targetEl,
+                props: {
+                    inline: true,
+                    manifest: OrderManifest,
+                    validators: OrderValidators,
+                    options: validatorOptions,
+                    ...options,
+                },
+            });
+            comp.$on("resolve", (ev) => resolve(ev.detail));
+            comp.$on("reject", reject);
+        } catch (e) {
+            reject(e);
         }
-      });
-      comp.$on('resolve', ev => resolve(ev.detail));
-      comp.$on('reject', reject);
-    }catch(e){
-      reject(e);
-    }
-  });
+    });
 }
 
-export { OrderComponent,  launchOrderForm, renderOrderForm};
+export { OrderComponent, launchOrderForm, renderOrderForm };
