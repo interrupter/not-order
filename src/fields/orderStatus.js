@@ -1,4 +1,5 @@
 module.exports = {
+    parent: "not-node//codeName",
     model: {
         type: String,
         required: true,
